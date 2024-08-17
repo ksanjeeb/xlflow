@@ -7,6 +7,7 @@ import Signup from './pages/auth/signup';
 import Settings from './pages/home/settings';
 import Layout from './pages/home/layout';
 import Resources from './pages/home/resources';
+import Editor from './pages/home/editor';
 function AppRoutes() {
 
   const router = createBrowserRouter([
@@ -31,6 +32,10 @@ function AppRoutes() {
           element: <Resources />,
         }
       ],
+    },
+    {
+      path: "/editor/:workflowID",
+      element:  <ProtectedRoute element={<Editor />} />,
     },
     {
       path: "/login",

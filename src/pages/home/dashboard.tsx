@@ -4,8 +4,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import TitleText from "@/components/ui/title-text";
 import { Plus } from "lucide-react";
 import FlowImage from "../../assets/workflow.svg";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+    const navigate= useNavigate()
     return (
         <>
             <TitleText text={"Dashboard"} />
@@ -27,7 +29,7 @@ function Dashboard() {
 
                     </CardContent>
                     <CardFooter className="flex justify-end gap-2">
-                        <Button variant="outline">View</Button>
+                        <Button variant="outline" onClick={()=>navigate("/editor/"+(each?.id || "new")+"?back=true")}>View</Button>
                     </CardFooter>
                 </Card>))}
             </div>
