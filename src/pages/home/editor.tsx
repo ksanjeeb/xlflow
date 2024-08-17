@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import { Background, Controls, ReactFlow } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Plus } from "lucide-react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 function Editor() {
@@ -20,12 +21,15 @@ function Editor() {
                 <div className="absolute p-6 flex flex-row justify-between w-full z-10">
                     <div className="flex flex-row gap-2">
                         {showBack && <Button variant={"secondary"} size={"icon"} onClick={() => navigate("/dashboard")}><ChevronLeft /></Button>}
-                        <Button variant={"secondary"} className="cursor-default">{workflowID === "new" ? "Workflow":workflowID}</Button>
+                        <Label className="hidden md:block self-center mx-2">
+                            {workflowID === "new" ? "Workflow" : workflowID}
+                        </Label>                        
+                        <Button variant={"default"} className="md:ml-4"> <Plus size={16} className="mr-2" /> Block</Button>
                     </div>
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-col md:flex-row gap-2">
                         {workflowID === "new" && <Button variant={"secondary"} >Save</Button>}
                         {workflowID !== "new" && <Button variant={"outline"} >Update</Button>}
-                        {workflowID !== "new" && <Button variant={"destructive"} >Delete</Button>}
+                        {/* {workflowID !== "new" && <Button variant={"destructive"} >Delete</Button>} */}
                     </div>
                 </div>
                 <ResizablePanel className="w-full" defaultSize={70}>
