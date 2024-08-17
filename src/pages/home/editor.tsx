@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import { Separator } from "@/components/ui/separator";
 import { Background, Controls, ReactFlow } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 import { ChevronLeft } from "lucide-react";
@@ -19,7 +20,7 @@ function Editor() {
                 <div className="absolute p-6 flex flex-row justify-between w-full z-10">
                     <div className="flex flex-row gap-2">
                         {showBack && <Button variant={"secondary"} size={"icon"} onClick={() => navigate("/dashboard")}><ChevronLeft /></Button>}
-                        <Button variant={"secondary"} className="cursor-default">{workflowID}</Button>
+                        <Button variant={"secondary"} className="cursor-default">{workflowID === "new" ? "Workflow":workflowID}</Button>
                     </div>
                     <div className="flex flex-row gap-2">
                         {workflowID === "new" && <Button variant={"secondary"} >Save</Button>}
@@ -27,26 +28,32 @@ function Editor() {
                         {workflowID !== "new" && <Button variant={"destructive"} >Delete</Button>}
                     </div>
                 </div>
-                <ResizablePanel className="h-[800px] w-full">
+                <ResizablePanel className="w-full" defaultSize={70}>
                     <ReactFlow colorMode='dark'>
                         <Background />
                         <Controls />
                     </ReactFlow>
-
                 </ResizablePanel>
                 <ResizableHandle withHandle />
 
-                <ResizablePanel className="flex flex-row w-full">
-                    <div>
-                        Output
+                <ResizablePanel>
+                    <ResizablePanelGroup direction="horizontal">
+                        <ResizablePanel defaultSize={75} >
+                            <p className="text-xs font-medium px-2 py-1 text-muted-foreground">OUTPUT</p>
+                            <Separator />
+                            <div className="h-full bg-muted/20">
 
-                    </div>
-                    <div>
-                        Logs
+                            </div>
+                        </ResizablePanel>
+                        <ResizableHandle />
+                        <ResizablePanel>
+                            <p className="text-xs font-medium px-2 py-1 text-muted-foreground">LOGS</p>
+                            <Separator />
+                            <div className="h-full bg-muted/20">
 
-                    </div>
-
-
+                            </div>
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
                 </ResizablePanel>
             </ResizablePanelGroup>
 
