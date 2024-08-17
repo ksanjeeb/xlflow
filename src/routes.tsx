@@ -4,10 +4,9 @@ import Dashboard from './pages/home/dashboard';
 import ProtectedRoute from './protected';
 import Login from './pages/auth/login';
 import Signup from './pages/auth/signup';
-import Editor from './pages/home/editor';
 import Settings from './pages/home/settings';
-import Cart from './pages/home/cart';
 import Layout from './pages/home/layout';
+import Resources from './pages/home/resources';
 function AppRoutes() {
 
   const router = createBrowserRouter([
@@ -28,14 +27,10 @@ function AppRoutes() {
           element: <Settings />,
         },
         {
-          path: "shopping",
-          element: <Cart />,
-        },
+          path: "resources",
+          element: <Resources />,
+        }
       ],
-    },
-    {
-      path: "/editor",
-      element: <ProtectedRoute element={<Editor />} />,
     },
     {
       path: "/login",

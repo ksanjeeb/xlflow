@@ -4,6 +4,7 @@ function Settings() {
     return (
         <div>
             <TitleText text={"Settings"} />
+            <div>Coming soon...</div>
 
         </div>
     );

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import GradientOverlay from "@/components/ui/gradient-overlay";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Package2Icon, PackageIcon, SettingsIcon, ShoppingCartIcon } from "lucide-react";
+import { PackageIcon, SettingsIcon, UploadCloud, Workflow } from "lucide-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 
@@ -13,10 +13,10 @@ const navLinks = [
         "srText": "Dashboard"
     },
     {
-        "to": "/shopping",
-        "icon": "ShoppingCartIcon",
-        "tooltip": "Orders",
-        "srText": "Orders"
+        "to": "/resources",
+        "icon": "uploadIcon",
+        "tooltip": "Resource Upload",
+        "srText": "Resource Upload"
     },
 ]
 
@@ -30,7 +30,7 @@ interface NavLink {
 
 const iconMap: any = {
     PackageIcon: PackageIcon,
-    ShoppingCartIcon: ShoppingCartIcon,
+    uploadIcon: UploadCloud,
 };
 
 
@@ -67,8 +67,8 @@ const Layout = () => {
                             to="/dashboard"
                             className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
                         >
-                            <Package2Icon className="h-4 w-4 transition-all group-hover:scale-110" />
-                            <span className="sr-only">Acme Inc</span>
+                            <Workflow className="h-4 w-4 transition-all group-hover:scale-110" />
+                            <span className="sr-only">xlFlow</span>
                         </Link>
                         {navLinks.map((link: NavLink) => {
                             const IconComponent = iconMap[link.icon];
@@ -94,7 +94,7 @@ const Layout = () => {
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <Link
-                                    to="#"
+                                    to="/settings"
                                     className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                                 >
                                     <SettingsIcon className="h-5 w-5" />
