@@ -29,7 +29,7 @@ function Dashboard() {
 
                     </CardContent>
                     <CardFooter className="flex justify-end gap-2">
-                        <Button variant="outline" onClick={()=>navigate("/editor/"+(each?.id || "new")+"?back=true")}>View</Button>
+                        <Button variant="outline" onClick={()=>navigate("/editor/"+(each?.id || "new")+"?back=dashboard")}>View</Button>
                     </CardFooter>
                 </Card>))}
             </div>
