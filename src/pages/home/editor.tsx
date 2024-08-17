@@ -41,7 +41,7 @@ function Editor() {
                         <ResizablePanel defaultSize={75} >
                             <p className="text-xs font-medium px-2 py-1 text-muted-foreground">OUTPUT</p>
                             <Separator />
-                            <div className="h-full bg-muted/20">
+                            <div className="h-full bg-muted/10">
 
                             </div>
                         </ResizablePanel>
@@ -49,7 +49,7 @@ function Editor() {
                         <ResizablePanel>
                             <p className="text-xs font-medium px-2 py-1 text-muted-foreground">LOGS</p>
                             <Separator />
-                            <div className="h-full bg-muted/20">
+                            <div className="h-full bg-muted/10">
 
                             </div>
                         </ResizablePanel>
