@@ -12,7 +12,7 @@ function Dashboard() {
         <>
             <TitleText text={"Dashboard"} />
             <div className="flex flex-row flex-wrap gap-4">
-                <Card className="w-[330px] border-dotted border-4 border-gray-700 bg-inherit  hover:bg-card cursor-pointer">
+                <Card className="w-[330px] border-dotted border-4 border-gray-700 bg-inherit  hover:bg-card cursor-pointer" onClick={()=>navigate("/editor/new?back=dashboard")}>
                     <CardContent className="flex items-center justify-center h-full  bg-opacity-50">
                         <p className="text-gray-700 font-bold text-3xl flex flex-row gap-1">
                             <Plus className="self-center w-8 h-8"/>
