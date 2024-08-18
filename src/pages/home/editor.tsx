@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import CustomNode from "@/components/shared/custom-node";
+import { FileUpload } from "@/components/shared/nodes";
 import BlocksList from "@/components/ui/blocks-list";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -10,46 +12,18 @@ import { ChevronLeft } from "lucide-react";
 import { useCallback } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
-const nodeDefaults = {
+const nodeBoth = {
     sourcePosition: Position.Right,
     targetPosition: Position.Left,
 };
 
-const initialNodes = [
-    {
-        id: '1',
-        position: { x: 0, y: 150 },
-        data: { label: 'default style 1' },
-        ...nodeDefaults,
-    },
-    {
-        id: '2',
-        position: { x: 250, y: 0 },
-        data: { label: 'default style 2' },
-        ...nodeDefaults,
-    },
-    {
-        id: '3',
-        position: { x: 250, y: 150 },
-        data: { label: 'default style 3' },
-        ...nodeDefaults,
-    },
-    {
-        id: '4',
-        position: { x: 250, y: 300 },
-        data: { label: 'default style 4' },
-        ...nodeDefaults,
-    },
-];
+const nodeTypes = {
+    custom: FileUpload,
+};
 
-const initialEdges = [
-    {
-      id: 'e1-2',
-      source: '1',
-      target: '2',
-      animated: true,
-    },
-  ];
+
+
+
 
 function Editor() {
     const { workflowID } = useParams();
@@ -57,17 +31,54 @@ function Editor() {
     const [searchParams] = useSearchParams();
     const showBack = searchParams.get('back');
 
+    const initialNodes = [
+        {
+            id: '1',
+            position: { x: 0, y: 150 },
+            data: { label: 'default style 1' },
+            type: "input",
+            ...nodeBoth,
+        },
+        {
+            id: '2',
+            position: { x: 250, y: 0 },
+            type: "custom",
+            data: { label: 'default style 2', handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: '3',
+            position: { x: 250, y: 150 },
+            data: { label: 'default style 3' },
+            ...nodeBoth,
+        },
+        {
+            id: '4',
+            position: { x: 250, y: 300 },
+            data: { label: 'default style 4' },
+            ...nodeBoth,
+        },
+    ];
+
+
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+
+    console.log(edges);
 
     const onConnect = useCallback(
-        (params: any) => setEdges((els) => addEdge(params, els)),
+        (params: any) => setEdges((els) => addEdge(params, els) as never[]),
         [],
     );
 
     const handleCardClick = (value: any) => {
         console.log(value)
     }
+
+    function handleAction(){
+        console.log("Hello")
+    }
+
 
 
     return (
@@ -96,6 +107,8 @@ function Editor() {
                         onEdgesChange={onEdgesChange}
                         onConnect={onConnect}
                         fitView
+                        nodeTypes={nodeTypes}
+
                     >
                         <Background />
                         <Controls />
