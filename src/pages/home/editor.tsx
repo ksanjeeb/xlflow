@@ -19,8 +19,8 @@ const nodeBoth = {
 
 const nodeTypes = {
     fileUpload: FileUpload,
-    googleSheet:GoogleSheet,
-    exampleData:ExampleData
+    googleSheet: GoogleSheet,
+    exampleData: ExampleData
 };
 
 
@@ -45,14 +45,14 @@ function Editor() {
             id: '2',
             position: { x: 250, y: 0 },
             type: "fileUpload",
-            data: {  handleAction },
+            data: { handleAction },
             ...nodeBoth,
         },
         {
             id: '3',
             position: { x: 250, y: 150 },
             type: "googleSheet",
-            data: {  handleAction },
+            data: { handleAction },
             ...nodeBoth,
         },
         {
@@ -78,7 +78,7 @@ function Editor() {
         console.log(value)
     }
 
-    function handleAction(){
+    function handleAction() {
         console.log("Hello")
     }
 
@@ -111,7 +111,7 @@ function Editor() {
                         onConnect={onConnect}
                         fitView
                         nodeTypes={nodeTypes}
-
+                        connectionLineStyle={{ strokeWidth: 3 }}
                     >
                         <Background />
                         <Controls />
