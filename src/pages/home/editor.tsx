@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import CustomNode from "@/components/shared/custom-node";
-import { FileUpload } from "@/components/shared/nodes";
+import { ExampleData, FileUpload, GoogleSheet } from "@/components/shared/nodes";
 import BlocksList from "@/components/ui/blocks-list";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -18,7 +18,9 @@ const nodeBoth = {
 };
 
 const nodeTypes = {
-    custom: FileUpload,
+    fileUpload: FileUpload,
+    googleSheet:GoogleSheet,
+    exampleData:ExampleData
 };
 
 
@@ -35,21 +37,22 @@ function Editor() {
         {
             id: '1',
             position: { x: 0, y: 150 },
-            data: { label: 'default style 1' },
-            type: "input",
+            data: { handleAction },
+            type: "exampleData",
             ...nodeBoth,
         },
         {
             id: '2',
             position: { x: 250, y: 0 },
-            type: "custom",
-            data: { label: 'default style 2', handleAction },
+            type: "fileUpload",
+            data: {  handleAction },
             ...nodeBoth,
         },
         {
             id: '3',
             position: { x: 250, y: 150 },
-            data: { label: 'default style 3' },
+            type: "googleSheet",
+            data: {  handleAction },
             ...nodeBoth,
         },
         {
