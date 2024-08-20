@@ -6,9 +6,17 @@ const CustomHandle = (props:any) => {
     type: props.type,
   });
 
+  const DEFAULT_HANDLE_STYLE = {
+    width: 15,
+    height: 15,
+    bottom: -5,
+  };
+  
   return (
     <Handle
       {...props}
+      style={{ ...DEFAULT_HANDLE_STYLE }}
+
       isConnectable={connections.length < props.connectionCount}
     />
   );
