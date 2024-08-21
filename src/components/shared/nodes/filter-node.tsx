@@ -18,7 +18,18 @@ type DatasetItem = { [key: string]: any };
 
 
 const FilterNode = (props: any) => {
-    const [dataset] = useState<DatasetItem[]>([]);
+    const [dataset] = useState<DatasetItem[]>([  {
+        "country": "Afghanistan",
+        "population": "Many",
+        "life expectancy": 58.7,
+        "income": 1870
+      },
+      {
+        "country": "Albania",
+        "population": 2930000,
+        "life expectancy": 78,
+        "income": 12400
+      },]);
 
     const [filter, setFilter] = useState<FilterState>({
         filter_column: "",
@@ -63,6 +74,7 @@ const FilterNode = (props: any) => {
 
     return (
         <CustomNode title="Filter" {...props}>
+            {dataset.length > 0 ? <>
             <div className='mt-2'>
                 <Label>Column name:</Label>
                 <Select onValueChange={handleColumnChange} value={filter.filter_column}>
@@ -101,6 +113,7 @@ const FilterNode = (props: any) => {
                     />
                 </div>
             )}
+            </>: <p className='my-2 min-w-64 text-muted-foreground'>Please attach valid dataset</p>}
         </CustomNode>
     );
 };

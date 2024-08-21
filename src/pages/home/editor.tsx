@@ -3,7 +3,10 @@ import exampleData from "@/components/shared/nodes/example-data";
 import fileUpload from "@/components/shared/nodes/file-upload";
 import filterNode from "@/components/shared/nodes/filter-node";
 import googleSheet from "@/components/shared/nodes/google-sheet";
+import groupNode from "@/components/shared/nodes/group-node";
 import mergeNode from "@/components/shared/nodes/merge-node";
+import sliceNode from "@/components/shared/nodes/slice-node";
+import sortNode from "@/components/shared/nodes/sort-node";
 import BlocksList from "@/components/ui/blocks-list";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -25,7 +28,10 @@ const nodeTypes = {
     googleSheet,
     exampleData,
     filterNode,
-    mergeNode
+    mergeNode,
+    groupNode,
+    sliceNode,
+    sortNode,
 };
 
 
@@ -71,6 +77,27 @@ function Editor() {
             id: 'merge_by_key_node',
             position: { x: 500, y: 240 },
             type: "mergeNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'group_node',
+            position: { x: 500, y: 400 },
+            type: "groupNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'slice_node',
+            position: { x: 500, y: 560 },
+            type: "sliceNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'sort_node',
+            position: { x: 500, y: 700 },
+            type: "sortNode",
             data: { handleAction },
             ...nodeBoth,
         },

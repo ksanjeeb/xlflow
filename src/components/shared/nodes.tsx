@@ -1,9 +1,9 @@
 
-//Filter
-//Merge
-//Group
-//Slice
-//Sort
+//Filter -done
+//Merge -done
+//Group - done
+//Slice - done
+// Sort - done
 //Javascript
 
 //Barchart
