@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import CustomNode from "@/components/shared/custom-node";
-import { ExampleData, FileUpload, GoogleSheet } from "@/components/shared/nodes";
+import exampleData from "@/components/shared/nodes/example-data";
+import fileUpload from "@/components/shared/nodes/file-upload";
+import filterNode from "@/components/shared/nodes/filter-node";
+import googleSheet from "@/components/shared/nodes/google-sheet";
+import mergeNode from "@/components/shared/nodes/merge-node";
 import BlocksList from "@/components/ui/blocks-list";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -18,9 +21,11 @@ const nodeBoth = {
 };
 
 const nodeTypes = {
-    fileUpload: FileUpload,
-    googleSheet: GoogleSheet,
-    exampleData: ExampleData
+    fileUpload,
+    googleSheet,
+    exampleData,
+    filterNode,
+    mergeNode
 };
 
 
@@ -35,30 +40,38 @@ function Editor() {
 
     const initialNodes = [
         {
-            id: '1',
-            position: { x: 0, y: 150 },
+            id: 'example_data',
+            position: { x: 50, y: 100 },
             data: { handleAction },
             type: "exampleData",
             ...nodeBoth,
         },
         {
-            id: '2',
-            position: { x: 250, y: 0 },
+            id: 'file_upload',
+            position: { x: 50, y: 250 },
             type: "fileUpload",
             data: { handleAction },
             ...nodeBoth,
         },
         {
-            id: '3',
-            position: { x: 250, y: 150 },
+            id: 'google_sheet',
+            position: { x: 50, y: 400 },
             type: "googleSheet",
             data: { handleAction },
             ...nodeBoth,
         },
         {
-            id: '4',
-            position: { x: 250, y: 300 },
-            data: { label: 'default style 4' },
+            id: 'filter_node',
+            position: { x: 500, y: 80 },
+            type: "filterNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'merge_by_key_node',
+            position: { x: 500, y: 240 },
+            type: "mergeNode",
+            data: { handleAction },
             ...nodeBoth,
         },
     ];
@@ -109,7 +122,7 @@ function Editor() {
                         onNodesChange={onNodesChange}
                         onEdgesChange={onEdgesChange}
                         onConnect={onConnect}
-                        fitView
+                        // fitView
                         nodeTypes={nodeTypes}
                         connectionLineStyle={{ strokeWidth: 3 }}
                     >
