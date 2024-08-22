@@ -4,6 +4,7 @@ import fileUpload from "@/components/shared/nodes/file-upload";
 import filterNode from "@/components/shared/nodes/filter-node";
 import googleSheet from "@/components/shared/nodes/google-sheet";
 import groupNode from "@/components/shared/nodes/group-node";
+import javascriptNode from "@/components/shared/nodes/javascript-node";
 import mergeNode from "@/components/shared/nodes/merge-node";
 import sliceNode from "@/components/shared/nodes/slice-node";
 import sortNode from "@/components/shared/nodes/sort-node";
@@ -32,6 +33,7 @@ const nodeTypes = {
     groupNode,
     sliceNode,
     sortNode,
+    javascriptNode,
 };
 
 
@@ -96,8 +98,15 @@ function Editor() {
         },
         {
             id: 'sort_node',
-            position: { x: 500, y: 700 },
+            position: { x: 1000, y: 80 },
             type: "sortNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'js_node',
+            position: { x: 1000, y: 240 },
+            type: "javascriptNode",
             data: { handleAction },
             ...nodeBoth,
         },
@@ -110,9 +119,19 @@ function Editor() {
     console.log(edges);
 
     const onConnect = useCallback(
-        (params: any) => setEdges((els) => addEdge(params, els) as never[]),
+        (params: any) => {
+          setEdges((prevEdges) => {
+            const filteredEdges = prevEdges.filter(
+              (edge:any) =>
+                !(edge.target === params.target && edge.targetHandle === params.targetHandle)
+            );
+                  const newEdges = addEdge(params, filteredEdges);
+      
+            return newEdges as never[];
+          });
+        },
         [],
-    );
+      );
 
     const handleCardClick = (value: any) => {
         console.log(value)
