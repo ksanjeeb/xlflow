@@ -11,7 +11,7 @@
 //Scatterplot
 //Timeseries
 
-//Stats
-//Markdown
+//Stats -done
+//Markdown -
 //Export
 

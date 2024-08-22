@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import barChart from "@/components/shared/nodes/bar-chart";
 import exampleData from "@/components/shared/nodes/example-data";
+import exportNode from "@/components/shared/nodes/export-node";
 import fileUpload from "@/components/shared/nodes/file-upload";
 import filterNode from "@/components/shared/nodes/filter-node";
 import googleSheet from "@/components/shared/nodes/google-sheet";
@@ -9,6 +10,8 @@ import javascriptNode from "@/components/shared/nodes/javascript-node";
 import mergeNode from "@/components/shared/nodes/merge-node";
 import sliceNode from "@/components/shared/nodes/slice-node";
 import sortNode from "@/components/shared/nodes/sort-node";
+import statsNode from "@/components/shared/nodes/stats-node";
+import textareaNode from "@/components/shared/nodes/textarea-node";
 import BlocksList from "@/components/ui/blocks-list";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -35,7 +38,10 @@ const nodeTypes = {
     sliceNode,
     sortNode,
     javascriptNode,
-    barChart
+    barChart,
+    statsNode,
+    textareaNode,
+    exportNode
 };
 
 
@@ -114,8 +120,29 @@ function Editor() {
         },
         {
             id: 'bar_chart_node',
-            position: { x: 1000, y: 540 },
+            position: { x: 1000, y: 580 },
             type: "barChart",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'stats_node',
+            position: { x: 1400, y: 80 },
+            type: "statsNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'textarea_node',
+            position: { x: 1800, y: 280 },
+            type: "textareaNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'export_node',
+            position: { x: 1800, y: 80 },
+            type: "exportNode",
             data: { handleAction },
             ...nodeBoth,
         },
