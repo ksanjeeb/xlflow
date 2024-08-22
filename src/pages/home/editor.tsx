@@ -105,7 +105,7 @@ function Editor() {
         },
         {
             id: 'js_node',
-            position: { x: 1000, y: 240 },
+            position: { x: 1000, y: 340 },
             type: "javascriptNode",
             data: { handleAction },
             ...nodeBoth,
