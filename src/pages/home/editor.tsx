@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import barChart from "@/components/shared/nodes/bar-chart";
 import exampleData from "@/components/shared/nodes/example-data";
 import fileUpload from "@/components/shared/nodes/file-upload";
 import filterNode from "@/components/shared/nodes/filter-node";
@@ -34,6 +35,7 @@ const nodeTypes = {
     sliceNode,
     sortNode,
     javascriptNode,
+    barChart
 };
 
 
@@ -107,6 +109,13 @@ function Editor() {
             id: 'js_node',
             position: { x: 1000, y: 340 },
             type: "javascriptNode",
+            data: { handleAction },
+            ...nodeBoth,
+        },
+        {
+            id: 'bar_chart_node',
+            position: { x: 1000, y: 540 },
+            type: "barChart",
             data: { handleAction },
             ...nodeBoth,
         },

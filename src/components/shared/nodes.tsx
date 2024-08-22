@@ -4,9 +4,9 @@
 //Group - done
 //Slice - done
 // Sort - done
-//Javascript
+//Javascript - done
 
-//Barchart
+//Barchart -done
 //Histogram
 //Scatterplot
 //Timeseries
