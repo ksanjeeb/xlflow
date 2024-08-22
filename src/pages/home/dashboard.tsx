@@ -12,14 +12,14 @@ function Dashboard() {
         <>
             <TitleText text={" Dashboard"} />
             <div className="flex flex-row flex-wrap gap-4">
-                <Card className="w-[600px] border-dotted border-4 border-gray-700 bg-inherit  hover:bg-card cursor-pointer" onClick={() => navigate("/editor/new?back=dashboard")}>
+                <Card className="xl:w-[600px] lg:w-[420px] w-[350px] border-dotted border-4 border-gray-700 bg-inherit  hover:bg-card cursor-pointer" onClick={() => navigate("/editor/new?back=dashboard")}>
                     <CardContent className="flex items-center justify-center h-full  bg-opacity-50">
                         <p className="text-gray-700 font-bold text-3xl flex flex-row gap-1">
                             <Plus className="self-center w-8 h-8" />
                             Add Workflow</p>
                     </CardContent>
                 </Card>
-                {[...Array(55)].map((each: any, index: number) => (<Card className="w-[600px] -p-2" key={index}>
+                {[...Array(55)].map((each: any, index: number) => (<Card className="xl:w-[600px] lg:w-[420px] w-[350px] -p-2 " key={index}>
                     <CardHeader>
                         <CardTitle className="text-xl">Workflow {Date.now()}</CardTitle>
                         <CardDescription>No description.</CardDescription>
