@@ -90,7 +90,7 @@ const blockElement: any = [
         "disabled": false,
         "key": "js_node"
     },
-    
+
     {
         "file_name": "Barchart",
         "description": "Displays a bar chart of given x and y column names.",
@@ -131,22 +131,22 @@ const blockElement: any = [
 
 
 interface BlocksListProps {
-    onAction?: (value:any) => void;
-  }
+    onAction?: (value: any) => void;
+}
 
-  function BlocksList({ onAction }: BlocksListProps) {
+function BlocksList({ onAction }: BlocksListProps) {
     const [currentTab, setCurrentTab] = useState<any>("input");
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleClick = (element: any) => {
         if (typeof onAction === "function") onAction(element);
-        setIsOpen(false); 
+        setIsOpen(false);
     }
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button variant={"default"} className="md:ml-4" onClick={() => setIsOpen(true)}>
+                <Button variant={"default"} className="md:ml-4" onClick={() => { setIsOpen(true); setCurrentTab("input") }}>
                     <Plus size={16} className="mr-2" /> Block
                 </Button>
             </DialogTrigger>
