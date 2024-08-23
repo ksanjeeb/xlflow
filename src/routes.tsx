@@ -8,7 +8,8 @@ import Settings from './pages/home/settings';
 import Layout from './pages/home/layout';
 import Resources from './pages/home/resources';
 import Editor from './pages/home/editor';
-import Custompage from './pages/home/custompage';
+
+
 function AppRoutes() {
 
   const router = createBrowserRouter([

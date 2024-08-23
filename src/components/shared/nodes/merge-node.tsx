@@ -50,7 +50,7 @@ const MergeByColumnKey = (props: any) => {
                 setMergeColumn((prev: any) => ({ ...prev, list: commonKeys }));
             }
         }
-    }, [dataset1, dataset2, getKeyTypes, mergeColumn.list]);
+    }, [dataset1, dataset2]);
 
     return (
         <CustomNode title="Merge by column" enableSecondTarget={true} {...props}>

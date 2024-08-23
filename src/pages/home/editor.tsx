@@ -59,7 +59,7 @@ function Editor() {
         {
             id: 'example_data',
             position: { x: 50, y: 100 },
-            data: { handleAction },
+            data: { dataset:[] },
             type: "exampleData",
             ...nodeBoth,
         },
@@ -67,84 +67,84 @@ function Editor() {
             id: 'file_upload',
             position: { x: 50, y: 250 },
             type: "fileUpload",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'google_sheet',
             position: { x: 50, y: 400 },
             type: "googleSheet",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'filter_node',
             position: { x: 500, y: 80 },
             type: "filterNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'merge_by_key_node',
             position: { x: 500, y: 240 },
             type: "mergeNode",
-            data: { handleAction },
+            data: { dataset1:[], dataset2:[] },
             ...nodeBoth,
         },
         {
             id: 'group_node',
             position: { x: 500, y: 400 },
             type: "groupNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'slice_node',
             position: { x: 500, y: 560 },
             type: "sliceNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'sort_node',
             position: { x: 1000, y: 80 },
             type: "sortNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'js_node',
             position: { x: 1000, y: 340 },
             type: "javascriptNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'bar_chart_node',
             position: { x: 1000, y: 580 },
             type: "barChart",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'stats_node',
             position: { x: 1400, y: 80 },
             type: "statsNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'textarea_node',
             position: { x: 1800, y: 280 },
             type: "textareaNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
         {
             id: 'export_node',
             position: { x: 1800, y: 80 },
             type: "exportNode",
-            data: { handleAction },
+            data: { dataset:[] },
             ...nodeBoth,
         },
     ];
@@ -153,7 +153,6 @@ function Editor() {
     const [nodes, setNodes, onNodesChange] = useNodesState<any>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-    console.log(edges);
 
     const onConnect = useCallback(
         (params: any) => {
@@ -182,9 +181,7 @@ function Editor() {
         }
     }
 
-    function handleAction() {
-        console.log("Hello")
-    }
+
 
 
 

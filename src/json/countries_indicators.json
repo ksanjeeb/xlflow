@@ -1,0 +1,1172 @@
+[
+  {
+    "country": "Afghanistan",
+    "population": 36400000,
+    "life expectancy": 58.7,
+    "income": 1870
+  },
+  {
+    "country": "Albania",
+    "population": 2930000,
+    "life expectancy": 78,
+    "income": 12400
+  },
+  {
+    "country": "Algeria",
+    "population": 42000000,
+    "life expectancy": 77.9,
+    "income": 13700
+  },
+  {
+    "country": "Andorra",
+    "population": 77000,
+    "life expectancy": null,
+    "income": 51500
+  },
+  {
+    "country": "Angola",
+    "population": 30800000,
+    "life expectancy": 65.2,
+    "income": 5850
+  },
+  {
+    "country": "Antigua and Barbuda",
+    "population": 103000,
+    "life expectancy": 77.6,
+    "income": 21000
+  },
+  {
+    "country": "Argentina",
+    "population": 44700000,
+    "life expectancy": 77,
+    "income": 18900
+  },
+  {
+    "country": "Armenia",
+    "population": 2930000,
+    "life expectancy": 76,
+    "income": 8660
+  },
+  {
+    "country": "Australia",
+    "population": 24800000,
+    "life expectancy": 82.9,
+    "income": 45800
+  },
+  {
+    "country": "Austria",
+    "population": 8750000,
+    "life expectancy": 81.8,
+    "income": 44600
+  },
+  {
+    "country": "Azerbaijan",
+    "population": 9920000,
+    "life expectancy": 72.3,
+    "income": 16600
+  },
+  {
+    "country": "Bahamas",
+    "population": 399000,
+    "life expectancy": 74.1,
+    "income": 21900
+  },
+  {
+    "country": "Bahrain",
+    "population": 1570000,
+    "life expectancy": 77.2,
+    "income": 44300
+  },
+  {
+    "country": "Bangladesh",
+    "population": 166000000,
+    "life expectancy": 73.4,
+    "income": 3720
+  },
+  {
+    "country": "Barbados",
+    "population": 286000,
+    "life expectancy": 76.8,
+    "income": 16000
+  },
+  {
+    "country": "Belarus",
+    "population": 9450000,
+    "life expectancy": 73.8,
+    "income": 17200
+  },
+  {
+    "country": "Belgium",
+    "population": 11500000,
+    "life expectancy": 81.2,
+    "income": 42800
+  },
+  {
+    "country": "Belize",
+    "population": 382000,
+    "life expectancy": 72.5,
+    "income": 7710
+  },
+  {
+    "country": "Benin",
+    "population": 11500000,
+    "life expectancy": 65,
+    "income": 2170
+  },
+  {
+    "country": "Bhutan",
+    "population": 817000,
+    "life expectancy": 74.8,
+    "income": 9930
+  },
+  {
+    "country": "Bolivia",
+    "population": 11200000,
+    "life expectancy": 74,
+    "income": 6980
+  },
+  {
+    "country": "Bosnia and Herzegovina",
+    "population": 3500000,
+    "life expectancy": 77.9,
+    "income": 12100
+  },
+  {
+    "country": "Botswana",
+    "population": 2330000,
+    "life expectancy": 66.9,
+    "income": 16500
+  },
+  {
+    "country": "Brazil",
+    "population": 211000000,
+    "life expectancy": 75.7,
+    "income": 14300
+  },
+  {
+    "country": "Brunei",
+    "population": 434000,
+    "life expectancy": 77.4,
+    "income": 76900
+  },
+  {
+    "country": "Bulgaria",
+    "population": 7040000,
+    "life expectancy": 75.3,
+    "income": 18900
+  },
+  {
+    "country": "Burkina Faso",
+    "population": 19800000,
+    "life expectancy": 61.6,
+    "income": 1710
+  },
+  {
+    "country": "Burundi",
+    "population": 11200000,
+    "life expectancy": 61.1,
+    "income": 691
+  },
+  {
+    "country": "Cambodia",
+    "population": 16200000,
+    "life expectancy": 69.3,
+    "income": 3830
+  },
+  {
+    "country": "Cameroon",
+    "population": 24700000,
+    "life expectancy": 61.2,
+    "income": 3170
+  },
+  {
+    "country": "Canada",
+    "population": 37000000,
+    "life expectancy": 82.2,
+    "income": 43800
+  },
+  {
+    "country": "Cape Verde",
+    "population": 553000,
+    "life expectancy": 74.1,
+    "income": 6420
+  },
+  {
+    "country": "Central African Republic",
+    "population": 4740000,
+    "life expectancy": 51.6,
+    "income": 689
+  },
+  {
+    "country": "Chad",
+    "population": 15400000,
+    "life expectancy": 60.5,
+    "income": 1860
+  },
+  {
+    "country": "Chile",
+    "population": 18200000,
+    "life expectancy": 80.7,
+    "income": 23400
+  },
+  {
+    "country": "China",
+    "population": 1420000000,
+    "life expectancy": 76.9,
+    "income": 16000
+  },
+  {
+    "country": "Colombia",
+    "population": 49500000,
+    "life expectancy": 78.6,
+    "income": 13700
+  },
+  {
+    "country": "Comoros",
+    "population": 832000,
+    "life expectancy": 68,
+    "income": 1440
+  },
+  {
+    "country": "Congo, Dem. Rep.",
+    "population": 84000000,
+    "life expectancy": 62.4,
+    "income": 751
+  },
+  {
+    "country": "Congo, Rep.",
+    "population": 5400000,
+    "life expectancy": 63.9,
+    "income": 5620
+  },
+  {
+    "country": "Costa Rica",
+    "population": 4950000,
+    "life expectancy": 81.4,
+    "income": 16200
+  },
+  {
+    "country": "Cote d'Ivoire",
+    "population": 24900000,
+    "life expectancy": 61.2,
+    "income": 3760
+  },
+  {
+    "country": "Croatia",
+    "population": 4160000,
+    "life expectancy": 77.7,
+    "income": 22600
+  },
+  {
+    "country": "Cuba",
+    "population": 11500000,
+    "life expectancy": 79.3,
+    "income": 20000
+  },
+  {
+    "country": "Cyprus",
+    "population": 1190000,
+    "life expectancy": 80.8,
+    "income": 32200
+  },
+  {
+    "country": "Czech Republic",
+    "population": 10600000,
+    "life expectancy": 79.4,
+    "income": 32300
+  },
+  {
+    "country": "Denmark",
+    "population": 5750000,
+    "life expectancy": 81.1,
+    "income": 46600
+  },
+  {
+    "country": "Djibouti",
+    "population": 971000,
+    "life expectancy": 67.1,
+    "income": 3540
+  },
+  {
+    "country": "Dominica",
+    "population": 74300,
+    "life expectancy": null,
+    "income": 10600
+  },
+  {
+    "country": "Dominican Republic",
+    "population": 10900000,
+    "life expectancy": 76.1,
+    "income": 15200
+  },
+  {
+    "country": "Ecuador",
+    "population": 16900000,
+    "life expectancy": 78.3,
+    "income": 10200
+  },
+  {
+    "country": "Egypt",
+    "population": 99400000,
+    "life expectancy": 72.6,
+    "income": 10800
+  },
+  {
+    "country": "El Salvador",
+    "population": 6410000,
+    "life expectancy": 75.8,
+    "income": 8290
+  },
+  {
+    "country": "Equatorial Guinea",
+    "population": 1310000,
+    "life expectancy": 66.1,
+    "income": 20500
+  },
+  {
+    "country": "Eritrea",
+    "population": 5190000,
+    "life expectancy": 64.6,
+    "income": 1250
+  },
+  {
+    "country": "Estonia",
+    "population": 1310000,
+    "life expectancy": 77.7,
+    "income": 29500
+  },
+  {
+    "country": "Ethiopia",
+    "population": 108000000,
+    "life expectancy": 66.4,
+    "income": 1800
+  },
+  {
+    "country": "Fiji",
+    "population": 912000,
+    "life expectancy": 65.8,
+    "income": 9420
+  },
+  {
+    "country": "Finland",
+    "population": 5540000,
+    "life expectancy": 82.1,
+    "income": 40300
+  },
+  {
+    "country": "France",
+    "population": 65200000,
+    "life expectancy": 82.6,
+    "income": 39000
+  },
+  {
+    "country": "Gabon",
+    "population": 2070000,
+    "life expectancy": 67.3,
+    "income": 17500
+  },
+  {
+    "country": "Gambia",
+    "population": 2160000,
+    "life expectancy": 67.8,
+    "income": 1570
+  },
+  {
+    "country": "Georgia",
+    "population": 3910000,
+    "life expectancy": 74.3,
+    "income": 10100
+  },
+  {
+    "country": "Germany",
+    "population": 82300000,
+    "life expectancy": 81.3,
+    "income": 45200
+  },
+  {
+    "country": "Ghana",
+    "population": 29500000,
+    "life expectancy": 66.6,
+    "income": 4380
+  },
+  {
+    "country": "Greece",
+    "population": 11100000,
+    "life expectancy": 81.3,
+    "income": 25500
+  },
+  {
+    "country": "Grenada",
+    "population": 108000,
+    "life expectancy": 71.9,
+    "income": 13500
+  },
+  {
+    "country": "Guatemala",
+    "population": 17200000,
+    "life expectancy": 73.2,
+    "income": 7530
+  },
+  {
+    "country": "Guinea",
+    "population": 13100000,
+    "life expectancy": 61.9,
+    "income": 1280
+  },
+  {
+    "country": "Guinea-Bissau",
+    "population": 1910000,
+    "life expectancy": 59.7,
+    "income": 1550
+  },
+  {
+    "country": "Guyana",
+    "population": 782000,
+    "life expectancy": 68.2,
+    "income": 7740
+  },
+  {
+    "country": "Haiti",
+    "population": 11100000,
+    "life expectancy": 64.5,
+    "income": 1710
+  },
+  {
+    "country": "Holy See",
+    "population": 801,
+    "life expectancy": 64.5,
+    "income": 1710
+  },
+  {
+    "country": "Honduras",
+    "population": 9420000,
+    "life expectancy": 73.1,
+    "income": 4590
+  },
+  {
+    "country": "Hungary",
+    "population": 9690000,
+    "life expectancy": 75.9,
+    "income": 26900
+  },
+  {
+    "country": "Iceland",
+    "population": 338000,
+    "life expectancy": 82.6,
+    "income": 47400
+  },
+  {
+    "country": "India",
+    "population": 1350000000,
+    "life expectancy": 69.1,
+    "income": 6890
+  },
+  {
+    "country": "Indonesia",
+    "population": 267000000,
+    "life expectancy": 72,
+    "income": 11700
+  },
+  {
+    "country": "Iran",
+    "population": 82000000,
+    "life expectancy": 76.5,
+    "income": 17400
+  },
+  {
+    "country": "Iraq",
+    "population": 39300000,
+    "life expectancy": 68,
+    "income": 15900
+  },
+  {
+    "country": "Ireland",
+    "population": 4800000,
+    "life expectancy": 81.5,
+    "income": 65600
+  },
+  {
+    "country": "Israel",
+    "population": 8450000,
+    "life expectancy": 82.4,
+    "income": 33400
+  },
+  {
+    "country": "Italy",
+    "population": 59300000,
+    "life expectancy": 82.6,
+    "income": 35200
+  },
+  {
+    "country": "Jamaica",
+    "population": 2900000,
+    "life expectancy": 75.2,
+    "income": 8520
+  },
+  {
+    "country": "Japan",
+    "population": 127000000,
+    "life expectancy": 84.2,
+    "income": 39100
+  },
+  {
+    "country": "Jordan",
+    "population": 9900000,
+    "life expectancy": 76.7,
+    "income": 8450
+  },
+  {
+    "country": "Kazakhstan",
+    "population": 18400000,
+    "life expectancy": 72,
+    "income": 24200
+  },
+  {
+    "country": "Kenya",
+    "population": 51000000,
+    "life expectancy": 67.3,
+    "income": 3110
+  },
+  {
+    "country": "Kiribati",
+    "population": 118000,
+    "life expectancy": 62.2,
+    "income": 1890
+  },
+  {
+    "country": "Kuwait",
+    "population": 4200000,
+    "life expectancy": 80,
+    "income": 68400
+  },
+  {
+    "country": "Kyrgyz Republic",
+    "population": 6130000,
+    "life expectancy": 71.5,
+    "income": 3490
+  },
+  {
+    "country": "Lao",
+    "population": 6960000,
+    "life expectancy": 67.9,
+    "income": 6310
+  },
+  {
+    "country": "Latvia",
+    "population": 1930000,
+    "life expectancy": 75.1,
+    "income": 25500
+  },
+  {
+    "country": "Lebanon",
+    "population": 6090000,
+    "life expectancy": 80.5,
+    "income": 13400
+  },
+  {
+    "country": "Lesotho",
+    "population": 2260000,
+    "life expectancy": 51.1,
+    "income": 2960
+  },
+  {
+    "country": "Liberia",
+    "population": 4850000,
+    "life expectancy": 65.4,
+    "income": 801
+  },
+  {
+    "country": "Libya",
+    "population": 6470000,
+    "life expectancy": 75.5,
+    "income": 18300
+  },
+  {
+    "country": "Liechtenstein",
+    "population": 38200,
+    "life expectancy": 75.5,
+    "income": 18300
+  },
+  {
+    "country": "Lithuania",
+    "population": 2880000,
+    "life expectancy": 75.3,
+    "income": 30400
+  },
+  {
+    "country": "Luxembourg",
+    "population": 590000,
+    "life expectancy": 82.4,
+    "income": 99000
+  },
+  {
+    "country": "Macedonia, FYR",
+    "population": 2090000,
+    "life expectancy": 75.2,
+    "income": 14000
+  },
+  {
+    "country": "Madagascar",
+    "population": 26300000,
+    "life expectancy": 63.4,
+    "income": 1460
+  },
+  {
+    "country": "Malawi",
+    "population": 19200000,
+    "life expectancy": 61,
+    "income": 1130
+  },
+  {
+    "country": "Malaysia",
+    "population": 32000000,
+    "life expectancy": 75.9,
+    "income": 27200
+  },
+  {
+    "country": "Maldives",
+    "population": 444000,
+    "life expectancy": 80.1,
+    "income": 13000
+  },
+  {
+    "country": "Mali",
+    "population": 19100000,
+    "life expectancy": 62.9,
+    "income": 2020
+  },
+  {
+    "country": "Malta",
+    "population": 432000,
+    "life expectancy": 81.8,
+    "income": 37900
+  },
+  {
+    "country": "Marshall Islands",
+    "population": 53200,
+    "life expectancy": null,
+    "income": 3780
+  },
+  {
+    "country": "Mauritania",
+    "population": 4540000,
+    "life expectancy": 70.6,
+    "income": 3670
+  },
+  {
+    "country": "Mauritius",
+    "population": 1270000,
+    "life expectancy": 74.9,
+    "income": 21000
+  },
+  {
+    "country": "Mexico",
+    "population": 131000000,
+    "life expectancy": 76.8,
+    "income": 17300
+  },
+  {
+    "country": "Micronesia, Fed. Sts.",
+    "population": 106000,
+    "life expectancy": 65.8,
+    "income": 3410
+  },
+  {
+    "country": "Moldova",
+    "population": 4040000,
+    "life expectancy": 72.4,
+    "income": 5330
+  },
+  {
+    "country": "Monaco",
+    "population": 38900,
+    "life expectancy": 72.4,
+    "income": 60700
+  },
+  {
+    "country": "Mongolia",
+    "population": 3120000,
+    "life expectancy": 68.7,
+    "income": 12100
+  },
+  {
+    "country": "Montenegro",
+    "population": 629000,
+    "life expectancy": 77.3,
+    "income": 16600
+  },
+  {
+    "country": "Morocco",
+    "population": 36200000,
+    "life expectancy": 75.5,
+    "income": 7720
+  },
+  {
+    "country": "Mozambique",
+    "population": 30500000,
+    "life expectancy": 61.1,
+    "income": 1200
+  },
+  {
+    "country": "Myanmar",
+    "population": 53900000,
+    "life expectancy": 70.3,
+    "income": 6100
+  },
+  {
+    "country": "Namibia",
+    "population": 2590000,
+    "life expectancy": 65.7,
+    "income": 10500
+  },
+  {
+    "country": "Nauru",
+    "population": 11300,
+    "life expectancy": 65.7,
+    "income": 12600
+  },
+  {
+    "country": "Nepal",
+    "population": 29600000,
+    "life expectancy": 71.5,
+    "income": 2420
+  },
+  {
+    "country": "Netherlands",
+    "population": 17100000,
+    "life expectancy": 81.9,
+    "income": 48500
+  },
+  {
+    "country": "New Zealand",
+    "population": 4750000,
+    "life expectancy": 81.8,
+    "income": 36400
+  },
+  {
+    "country": "Nicaragua",
+    "population": 6280000,
+    "life expectancy": 78.7,
+    "income": 5470
+  },
+  {
+    "country": "Niger",
+    "population": 22300000,
+    "life expectancy": 62.5,
+    "income": 949
+  },
+  {
+    "country": "Nigeria",
+    "population": 196000000,
+    "life expectancy": 66.1,
+    "income": 5570
+  },
+  {
+    "country": "North Korea",
+    "population": 25600000,
+    "life expectancy": 71.1,
+    "income": 1390
+  },
+  {
+    "country": "Norway",
+    "population": 5350000,
+    "life expectancy": 82.4,
+    "income": 64800
+  },
+  {
+    "country": "Oman",
+    "population": 4830000,
+    "life expectancy": 78.1,
+    "income": 38900
+  },
+  {
+    "country": "Pakistan",
+    "population": 201000000,
+    "life expectancy": 68,
+    "income": 5220
+  },
+  {
+    "country": "Palau",
+    "population": 22000,
+    "life expectancy": 68,
+    "income": 15300
+  },
+  {
+    "country": "Palestine",
+    "population": 5050000,
+    "life expectancy": 72.2,
+    "income": 2700
+  },
+  {
+    "country": "Panama",
+    "population": 4160000,
+    "life expectancy": 79.4,
+    "income": 23400
+  },
+  {
+    "country": "Papua New Guinea",
+    "population": 8420000,
+    "life expectancy": 61.1,
+    "income": 2800
+  },
+  {
+    "country": "Paraguay",
+    "population": 6900000,
+    "life expectancy": 74.8,
+    "income": 9280
+  },
+  {
+    "country": "Peru",
+    "population": 32600000,
+    "life expectancy": 80.2,
+    "income": 12700
+  },
+  {
+    "country": "Philippines",
+    "population": 107000000,
+    "life expectancy": 70.5,
+    "income": 7960
+  },
+  {
+    "country": "Poland",
+    "population": 38100000,
+    "life expectancy": 78.2,
+    "income": 27700
+  },
+  {
+    "country": "Portugal",
+    "population": 10300000,
+    "life expectancy": 81.3,
+    "income": 27900
+  },
+  {
+    "country": "Qatar",
+    "population": 2690000,
+    "life expectancy": 80.7,
+    "income": 121000
+  },
+  {
+    "country": "Romania",
+    "population": 19600000,
+    "life expectancy": 75.5,
+    "income": 23400
+  },
+  {
+    "country": "Russia",
+    "population": 144000000,
+    "life expectancy": 71.1,
+    "income": 24800
+  },
+  {
+    "country": "Rwanda",
+    "population": 12500000,
+    "life expectancy": 68.3,
+    "income": 1930
+  },
+  {
+    "country": "Samoa",
+    "population": 198000,
+    "life expectancy": 72.4,
+    "income": 5950
+  },
+  {
+    "country": "San Marino",
+    "population": 33600,
+    "life expectancy": 72.4,
+    "income": 39800
+  },
+  {
+    "country": "Sao Tome and Principe",
+    "population": 209000,
+    "life expectancy": 70.9,
+    "income": 3190
+  },
+  {
+    "country": "Saudi Arabia",
+    "population": 33600000,
+    "life expectancy": 77.6,
+    "income": 50100
+  },
+  {
+    "country": "Senegal",
+    "population": 16300000,
+    "life expectancy": 66.8,
+    "income": 2570
+  },
+  {
+    "country": "Serbia",
+    "population": 8760000,
+    "life expectancy": 76.2,
+    "income": 14800
+  },
+  {
+    "country": "Seychelles",
+    "population": 95200,
+    "life expectancy": 74.2,
+    "income": 27500
+  },
+  {
+    "country": "Sierra Leone",
+    "population": 7720000,
+    "life expectancy": 60,
+    "income": 1490
+  },
+  {
+    "country": "Singapore",
+    "population": 5790000,
+    "life expectancy": 84,
+    "income": 83900
+  },
+  {
+    "country": "Slovak Republic",
+    "population": 5450000,
+    "life expectancy": 77.2,
+    "income": 31400
+  },
+  {
+    "country": "Slovenia",
+    "population": 2080000,
+    "life expectancy": 81.1,
+    "income": 30900
+  },
+  {
+    "country": "Solomon Islands",
+    "population": 623000,
+    "life expectancy": 63.6,
+    "income": 2110
+  },
+  {
+    "country": "Somalia",
+    "population": 15200000,
+    "life expectancy": 58,
+    "income": 629
+  },
+  {
+    "country": "South Africa",
+    "population": 57400000,
+    "life expectancy": 63.5,
+    "income": 12300
+  },
+  {
+    "country": "South Korea",
+    "population": 51200000,
+    "life expectancy": 81.3,
+    "income": 36800
+  },
+  {
+    "country": "South Sudan",
+    "population": 12900000,
+    "life expectancy": 60.7,
+    "income": 1820
+  },
+  {
+    "country": "Spain",
+    "population": 46400000,
+    "life expectancy": 83.2,
+    "income": 34700
+  },
+  {
+    "country": "Sri Lanka",
+    "population": 21000000,
+    "life expectancy": 77.8,
+    "income": 12400
+  },
+  {
+    "country": "St. Kitts and Nevis",
+    "population": 55900,
+    "life expectancy": 77.8,
+    "income": 25700
+  },
+  {
+    "country": "St. Lucia",
+    "population": 180000,
+    "life expectancy": 76.6,
+    "income": 10900
+  },
+  {
+    "country": "St. Vincent and the Grenadines",
+    "population": 110000,
+    "life expectancy": 72,
+    "income": 11400
+  },
+  {
+    "country": "Sudan",
+    "population": 41500000,
+    "life expectancy": 68.8,
+    "income": 4440
+  },
+  {
+    "country": "Suriname",
+    "population": 568000,
+    "life expectancy": 71.6,
+    "income": 13200
+  },
+  {
+    "country": "Swaziland",
+    "population": 1390000,
+    "life expectancy": 58.6,
+    "income": 7600
+  },
+  {
+    "country": "Sweden",
+    "population": 9980000,
+    "life expectancy": 82.4,
+    "income": 47500
+  },
+  {
+    "country": "Switzerland",
+    "population": 8540000,
+    "life expectancy": 83.5,
+    "income": 57100
+  },
+  {
+    "country": "Syria",
+    "population": 18300000,
+    "life expectancy": 69.8,
+    "income": 2900
+  },
+  {
+    "country": "Tajikistan",
+    "population": 9110000,
+    "life expectancy": 72.2,
+    "income": 2920
+  },
+  {
+    "country": "Tanzania",
+    "population": 59100000,
+    "life expectancy": 65.5,
+    "income": 2780
+  },
+  {
+    "country": "Thailand",
+    "population": 69200000,
+    "life expectancy": 78.2,
+    "income": 16900
+  },
+  {
+    "country": "Timor-Leste",
+    "population": 1320000,
+    "life expectancy": 73.3,
+    "income": 1490
+  },
+  {
+    "country": "Togo",
+    "population": 7990000,
+    "life expectancy": 63.1,
+    "income": 1480
+  },
+  {
+    "country": "Tonga",
+    "population": 109000,
+    "life expectancy": 70.7,
+    "income": 5500
+  },
+  {
+    "country": "Trinidad and Tobago",
+    "population": 1370000,
+    "life expectancy": 73.4,
+    "income": 30300
+  },
+  {
+    "country": "Tunisia",
+    "population": 11700000,
+    "life expectancy": 78,
+    "income": 11600
+  },
+  {
+    "country": "Turkey",
+    "population": 81900000,
+    "life expectancy": 79.6,
+    "income": 24900
+  },
+  {
+    "country": "Turkmenistan",
+    "population": 5850000,
+    "life expectancy": 70.5,
+    "income": 17900
+  },
+  {
+    "country": "Tuvalu",
+    "population": 11300,
+    "life expectancy": 70.5,
+    "income": 3490
+  },
+  {
+    "country": "Uganda",
+    "population": 44300000,
+    "life expectancy": 62.9,
+    "income": 1820
+  },
+  {
+    "country": "Ukraine",
+    "population": 44000000,
+    "life expectancy": 72.3,
+    "income": 8330
+  },
+  {
+    "country": "United Arab Emirates",
+    "population": 9540000,
+    "life expectancy": 76.9,
+    "income": 68200
+  },
+  {
+    "country": "United Kingdom",
+    "population": 66600000,
+    "life expectancy": 81.2,
+    "income": 40100
+  },
+  {
+    "country": "United States",
+    "population": 327000000,
+    "life expectancy": 79.1,
+    "income": 54900
+  },
+  {
+    "country": "Uruguay",
+    "population": 3470000,
+    "life expectancy": 77.6,
+    "income": 21300
+  },
+  {
+    "country": "Uzbekistan",
+    "population": 32400000,
+    "life expectancy": 70.5,
+    "income": 6690
+  },
+  {
+    "country": "Vanuatu",
+    "population": 282000,
+    "life expectancy": 64.3,
+    "income": 2900
+  },
+  {
+    "country": "Venezuela",
+    "population": 32400000,
+    "life expectancy": 75.9,
+    "income": 14200
+  },
+  {
+    "country": "Vietnam",
+    "population": 96500000,
+    "life expectancy": 74.9,
+    "income": 6550
+  },
+  {
+    "country": "Yemen",
+    "population": 28900000,
+    "life expectancy": 67.1,
+    "income": 2430
+  },
+  {
+    "country": "Zambia",
+    "population": 17600000,
+    "life expectancy": 59.5,
+    "income": 3870
+  },
+  {
+    "country": "Zimbabwe",
+    "population": 16900000,
+    "life expectancy": 60.2,
+    "income": 1950
+  }
+]
