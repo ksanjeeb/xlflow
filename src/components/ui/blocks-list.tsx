@@ -15,25 +15,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset, Geojson",
         "type": "input",
         "disabled": false,
-        "key": "file-input"
-    },
-    {
-        "file_name": "Paste",
-        "description": "Paste input: string, number, csv, json, geojson or topojson.",
-        "input_text": "Input: -",
-        "output_text": "Output: Dataset, Object, String, Number, Geojson",
-        "type": "input",
-        "disabled": true,
-        "key": "paste-input"
-    },
-    {
-        "file_name": "HTTP Request",
-        "description": "Loads data via a http request.",
-        "input_text": "Input: -",
-        "output_text": "Output: Dataset, Object, Geojson",
-        "type": "input",
-        "disabled": true,
-        "key": "http-request-input"
+        "key": "file_upload",
     },
     {
         "file_name": "Sheets",
@@ -42,7 +24,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "input",
         "disabled": false,
-        "key": "sheets-input"
+        "key": "google_sheet"
     },
     {
         "file_name": "Example Data",
@@ -51,7 +33,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset, Geojson",
         "type": "input",
         "disabled": false,
-        "key": "example-data-input"
+        "key": "example_data"
     },
     {
         "file_name": "Filter",
@@ -60,16 +42,16 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "transform",
         "disabled": false,
-        "key": "filter-transform"
+        "key": "filter_node"
     },
     {
         "file_name": "Merge",
-        "description": "Merges two data sets based on the given column names.",
+        "description": "Merges two data sets based on the given column name.",
         "input_text": "Input: Dataset, Geojson",
         "output_text": "Output: Dataset",
         "type": "transform",
         "disabled": false,
-        "key": "merge-transform"
+        "key": "merge_by_key_node"
     },
     {
         "file_name": "Group",
@@ -78,7 +60,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "transform",
         "disabled": false,
-        "key": "group-transform"
+        "key": "group_node"
     },
     {
         "file_name": "Slice",
@@ -87,7 +69,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "transform",
         "disabled": false,
-        "key": "slice-transform"
+        "key": "slice_node"
     },
     {
         "file_name": "Sort",
@@ -96,17 +78,9 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "transform",
         "disabled": false,
-        "key": "sort-transform"
+        "key": "slice_node"
     },
-    {
-        "file_name": "Rename Columns",
-        "description": "Renames multiple columns.",
-        "input_text": "Input: Dataset",
-        "output_text": "Output: Dataset",
-        "type": "transform",
-        "disabled": false,
-        "key": "rename-columns-transform"
-    },
+
     {
         "file_name": "Javascript",
         "description": "The most powerful node! Takes two inputs (can be everything) and lets you transform it with Javascript.",
@@ -114,26 +88,9 @@ const blockElement: any = [
         "output_text": "Output: All types",
         "type": "transform",
         "disabled": false,
-        "key": "javascript-transform"
+        "key": "js_node"
     },
-    {
-        "file_name": "Geocode",
-        "description": "Adds latitude and longitude to each entry of a data set. Can be used with Here or Google Maps.",
-        "input_text": "Input: Dataset",
-        "output_text": "Output: Dataset",
-        "type": "transform",
-        "disabled": false,
-        "key": "geocode-transform"
-    },
-    {
-        "file_name": "Colorize",
-        "description": "Adds \"color\" property to each entry of a data set or geojson.",
-        "input_text": "Input: Dataset, Geojson",
-        "output_text": "Output: Dataset",
-        "type": "transform",
-        "disabled": false,
-        "key": "colorize-transform"
-    },
+    
     {
         "file_name": "Barchart",
         "description": "Displays a bar chart of given x and y column names.",
@@ -141,34 +98,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "visualization",
         "disabled": false,
-        "key": "barchart-visualization"
-    },
-    {
-        "file_name": "Histogram",
-        "description": "Displays a histogram of a given column name.",
-        "input_text": "Input: Dataset",
-        "output_text": "Output: Dataset",
-        "type": "visualization",
-        "disabled": false,
-        "key": "histogram-visualization"
-    },
-    {
-        "file_name": "Scatterplot",
-        "description": "Displays a scatterplot of given x and y column names.",
-        "input_text": "Input: Dataset",
-        "output_text": "Output: Dataset",
-        "type": "visualization",
-        "disabled": false,
-        "key": "scatterplot-visualization"
-    },
-    {
-        "file_name": "Time Series",
-        "description": "Displays a timeseries line chart of given x and y column names.",
-        "input_text": "Input: Dataset",
-        "output_text": "Output: Dataset",
-        "type": "visualization",
-        "disabled": false,
-        "key": "time-series-visualization"
+        "key": "bar_chart_node"
     },
     {
         "file_name": "Stats",
@@ -177,7 +107,7 @@ const blockElement: any = [
         "output_text": "Output: -",
         "type": "other",
         "disabled": false,
-        "key": "stats-other"
+        "key": "stats_node"
     },
     {
         "file_name": "Markdown",
@@ -186,7 +116,7 @@ const blockElement: any = [
         "output_text": "Output: -",
         "type": "other",
         "disabled": false,
-        "key": "markdown-other"
+        "key": "textarea_node"
     },
     {
         "file_name": "Export",
@@ -195,7 +125,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "other",
         "disabled": false,
-        "key": "export-other"
+        "key": "export_node"
     }
 ]
 
@@ -210,7 +140,7 @@ interface BlocksListProps {
 
     const handleClick = (element: any) => {
         if (typeof onAction === "function") onAction(element);
-        setIsOpen(false); // Close the dialog
+        setIsOpen(false); 
     }
 
     return (

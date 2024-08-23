@@ -25,7 +25,7 @@ function Dashboard() {
                         <CardDescription>No description.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <img src={FlowImage} alt="My Image" className="w-full h-32 rounded-md object-cover blur-lg" />
+                        <img src={FlowImage} alt="My Image" className="w-full h-32 rounded-md object-cover" />
 
                     </CardContent>
                     <CardFooter className="flex justify-end gap-2">

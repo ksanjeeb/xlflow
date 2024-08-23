@@ -22,6 +22,7 @@ import '@xyflow/react/dist/style.css';
 import { ChevronLeft } from "lucide-react";
 import { useCallback } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 const nodeBoth = {
     sourcePosition: Position.Right,
@@ -54,7 +55,7 @@ function Editor() {
     const [searchParams] = useSearchParams();
     const showBack = searchParams.get('back');
 
-    const initialNodes = [
+    const availableNodes = [
         {
             id: 'example_data',
             position: { x: 50, y: 100 },
@@ -149,7 +150,7 @@ function Editor() {
     ];
 
 
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    const [nodes, setNodes, onNodesChange] = useNodesState<any>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     console.log(edges);
@@ -170,7 +171,15 @@ function Editor() {
       );
 
     const handleCardClick = (value: any) => {
-        console.log(value)
+        try{
+        const filterNode:any = availableNodes.find((each:any)=> each.id === value.key)
+        if (filterNode.id) {
+            const nodeToAdd = { ...filterNode, id: uuidv4() };
+            setNodes([...nodes, nodeToAdd]);
+          }
+        }catch(err){
+            console.error(err)
+        }
     }
 
     function handleAction() {
