@@ -43,21 +43,21 @@ const applyFilter = (
 
     switch (filterKey) {
         case "text_is_exactly":
-            return data.filter(item => item[filterColumn] === filterValue);
+            return data.filter(item => item[filterColumn] == filterValue);
         case "text_is_not_exactly":
-            return data.filter(item => item[filterColumn] !== filterValue);
+            return data.filter(item => item[filterColumn] != filterValue);
         case "text_includes":
             return data.filter(item => item[filterColumn]?.includes(filterValue));
         case "text_does_not_include":
             return data.filter(item => !item[filterColumn]?.includes(filterValue));
         case "data_is_not_empty_or_null":
-            return data.filter(item => item[filterColumn] !== null && item[filterColumn] !== '');
+            return data.filter(item => item[filterColumn] != null && item[filterColumn] !== '');
         case "data_matches_regex":
             // eslint-disable-next-line no-case-declarations
             const regex = new RegExp(filterValue as string);
             return data.filter(item => regex.test(item[filterColumn]));
         case "number_equals":
-            return data.filter(item => item[filterColumn] === Number(filterValue));
+            return data.filter(item => item[filterColumn] == Number(filterValue));
         case "number_is_greater_than":
             return data.filter(item => item[filterColumn] > Number(filterValue));
         case "number_is_greater_than_or_equals":
