@@ -80,9 +80,8 @@ const initialFilter:FilterState ={
 }
 
 
-const FilterNode = ({ id, ...props }: { id: string; [key: string]: any }) => {
+const FilterNode = ({ id,data, ...props }: { id: string; [key: string]: any }) => {
     const [dataset, setDataset] = useState<any[]>([]);
-    const [filteredData, setFilteredData] = useState<any[]>([]);
     const { updateNodeData } = useReactFlow();
     const [filter, setFilter] = useState<FilterState>(initialFilter);
 
@@ -92,13 +91,12 @@ const FilterNode = ({ id, ...props }: { id: string; [key: string]: any }) => {
     useEffect(() => {
         const data:any = nodeData?.data?.dataset || [];
         setDataset(data);
-        setFilteredData(data);
         setFilter(initialFilter);
+        updateNodeData(id, { dataset: data });
     }, [nodeData]);
 
     useEffect(() => {
             const data_filtered = applyFilter(dataset, filter.filter_key, filter.filter_value, filter.filter_column);
-            setFilteredData(data_filtered);
             updateNodeData(id, { dataset: data_filtered });
     }, [filter]);
 
@@ -115,7 +113,7 @@ const FilterNode = ({ id, ...props }: { id: string; [key: string]: any }) => {
     }, [dataset]);
 
     return (
-        <CustomNode title="Filter" id={id} input={`IN : ${dataset.length}`} output={`OP : ${filteredData.length}`} {...props}>
+        <CustomNode title="Filter" id={id} input={`IN : ${dataset.length}`} output={`OP : ${data?.dataset?.length}`} {...props}>
             {nodeData?.id ? (
                 <>
                     <div className='mt-2'>
