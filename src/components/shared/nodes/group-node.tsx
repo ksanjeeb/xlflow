@@ -52,7 +52,7 @@ const GroupNode = ({ id, data, ...props }: GroupNodeProps) => {
       const filteredData = groupByKey(nodeData.data.dataset, groupByFilter);
       updateNodeData(id, { dataset: filteredData });
     }
-  }, [groupByFilter, nodeData?.data]);
+  }, [groupByFilter]);
 
 
 
