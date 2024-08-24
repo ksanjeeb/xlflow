@@ -25,7 +25,7 @@ const handleExecute = async (dataset: any, fullCode: any) => {
   }
 };
 
-const JavascriptNode = ({ id, ...props }: JavascriptNodeProps) => {
+const JavascriptNode = ({ id,data, ...props }: JavascriptNodeProps) => {
   const fixedCodeTop = 'async function(dataset) {\n';
   const fixedCodeBottom = '\n}';
   const [editableCode, setEditableCode] = useState<string>('  // Your JavaScript code here \nreturn null;');
@@ -43,7 +43,7 @@ const JavascriptNode = ({ id, ...props }: JavascriptNodeProps) => {
     if (nodeData?.data?.dataset) {
       updateNodeData(id, { dataset: nodeData.data.dataset });
     }
-  }, [nodeData?.data.dataset]);
+  }, [nodeData]);
 
 
   const handleRunButton = useCallback(async () => {
@@ -53,7 +53,7 @@ const JavascriptNode = ({ id, ...props }: JavascriptNodeProps) => {
   },[]);
 
   return (
-    <CustomNode title="Javascript" id={id} {...props}>
+    <CustomNode title="Javascript" id={id} input={`IN : ${nodeData?.data?.dataset?.length || 0}`} output={`OP : ${data?.dataset?.length || 0}`} {...props}>
       {nodeData?.data?.dataset?.length > 0 ? (
         <>
           <Editor
