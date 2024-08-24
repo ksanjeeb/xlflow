@@ -6,7 +6,7 @@ import CountriesIndicator from "../../../json/countries_indicators.json";
 import UFOSighting from "../../../json/ufo_sighting.json";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const ExampleData = ({ id, ...props }: any) => {
+const ExampleData = ({ id, data, ...props }: any) => {
     const [example, setExample] = useState("");
     const { updateNodeData } = useReactFlow();
 
@@ -26,7 +26,7 @@ const ExampleData = ({ id, ...props }: any) => {
     }, []);
 
     return (
-        <CustomNode title="Example Data" enableTarget={false} id={id} {...props}>
+        <CustomNode title="Example Data" enableTarget={false} id={id} input={"Dataset : " +data?.dataset.length || 0} {...props}>
             <Select onValueChange={(e) => onChange(e)} value={example}>
                 <SelectTrigger className="w-[260px] my-1 border-primary">
                     <SelectValue placeholder="Select dataset" />
