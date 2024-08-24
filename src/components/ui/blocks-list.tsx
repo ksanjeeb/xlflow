@@ -78,7 +78,7 @@ const blockElement: any = [
         "output_text": "Output: Dataset",
         "type": "transform",
         "disabled": false,
-        "key": "slice_node"
+        "key": "sort_node"
     },
 
     {
