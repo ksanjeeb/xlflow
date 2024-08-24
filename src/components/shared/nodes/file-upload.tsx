@@ -4,29 +4,52 @@ import CustomNode from "../custom-node";
 import { FileUp, Trash2 } from "lucide-react";
 import { useReactFlow } from "@xyflow/react";
 import Papa from 'papaparse';
+import toast from "react-hot-toast";
 
 const FileUpload = ({ id, data, ...props }: any) => {
     const { updateNodeData } = useReactFlow();
-    const [parsing , setParsing] = useState(false);
+    const [parsing, setParsing] = useState(false);
 
     const handleFileChange = (event: any) => {
         try {
             const file = event.target.files[0];
             const fileType = file.name.split('.').pop().toLowerCase();
-            if (fileType !== 'csv') {
-                alert('Please upload a CSV file.');
+            if (fileType !== 'csv' && fileType !== 'json') {
+                toast.error('Please upload a CSV or JSON file.');
                 return;
             }
             if (file) {
-                setParsing(true)
-                Papa.parse(file, {
-                    worker:true,
-                    complete: (result) => {
-                        setParsing(false)
-                        updateNodeData(id, { dataset: result.data, fileName: file.name })
-                    },
-                    header: true,
-                });
+                setParsing(true);
+                if (fileType === "csv") {
+                    Papa.parse(file, {
+                        worker: true,
+                        complete: (result) => {
+                            setParsing(false);
+                            updateNodeData(id, { dataset: result.data, fileName: file.name });
+                        },
+                        error: (err) => {
+                            setParsing(false);
+                            console.error("Parsing error:", err);
+                        },
+                        header: true,
+                    });
+                } else if (fileType === "json") {
+                    const reader = new FileReader();
+                    reader.onload = (event:any) => {
+                        try {
+                            const jsonData = JSON.parse(event.target.result);
+                            setParsing(false);
+                            updateNodeData(id, { dataset: jsonData, fileName: file.name });
+                        } catch (error) {
+                            setParsing(false);
+                            console.error("JSON parsing error:", error);
+                        }
+                    };
+                    reader.readAsText(file);
+                } else {
+                    setParsing(false);
+                    console.error("Unsupported file type:", fileType);
+                }
             }
         } catch (err) {
             console.error(err)
@@ -35,7 +58,7 @@ const FileUpload = ({ id, data, ...props }: any) => {
 
 
     return (
-        <CustomNode title="File" enableTarget={false} id={id} input={parsing ? "Parsing...":"Dataset : " + data?.dataset.length || 0} {...props}>
+        <CustomNode title="File" enableTarget={false} id={id} input={parsing ? "Parsing..." : "Dataset : " + data?.dataset.length || 0} {...props}>
             <div className='grid place-content-center'>
                 {data?.fileName ? <p>Uploaded file:</p> : <p>Upload your file here:</p>}
                 {data?.fileName ? (
@@ -46,10 +69,10 @@ const FileUpload = ({ id, data, ...props }: any) => {
                     </div>
                 ) : <input
                     type="file"
-                    accept=".csv"
+                    accept=".csv, .json"
                     onChange={handleFileChange}
-                    className='mt-2'
-                    disabled ={parsing}
+                    className="mt-2"
+                    disabled={parsing}
                 />}
             </div>
         </CustomNode>
