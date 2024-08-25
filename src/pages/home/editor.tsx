@@ -188,7 +188,7 @@ function Editor() {
     }
 
 
-    const onNodeClick = (event: any, node: any) => {
+    const onNodeClick = (_event: any, node: any) => {
         const table: any = node?.data?.dataset;
         setTableData(table)
     }
