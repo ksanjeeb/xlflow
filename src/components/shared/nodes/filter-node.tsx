@@ -71,7 +71,7 @@ const applyFilter = (
     }
 };
 
-const initialFilter:FilterState ={
+const initialFilter: FilterState = {
     filter_column: "",
     filter_list: [],
     type: "",
@@ -80,28 +80,26 @@ const initialFilter:FilterState ={
 }
 
 
-const FilterNode = ({ id,data, ...props }: { id: string; [key: string]: any }) => {
-    const [dataset, setDataset] = useState<any[]>([]);
+const FilterNode = ({ id, data, ...props }: { id: string;[key: string]: any }) => {
     const { updateNodeData } = useReactFlow();
     const [filter, setFilter] = useState<FilterState>(initialFilter);
 
     const connectionsTarget = useHandleConnections({ type: 'target', id: `target_${id}` });
-    const nodeData = useNodesData(connectionsTarget?.[0]?.source);
+    const nodeData:any = useNodesData(connectionsTarget?.[0]?.source);
 
     useEffect(() => {
-        const data:any = nodeData?.data?.dataset || [];
-        setDataset(data);
+        const data: any = nodeData?.data?.dataset || [];
         setFilter(initialFilter);
         updateNodeData(id, { dataset: data });
     }, [nodeData]);
 
     useEffect(() => {
-            const data_filtered = applyFilter(dataset, filter.filter_key, filter.filter_value, filter.filter_column);
-            updateNodeData(id, { dataset: data_filtered });
+        const data_filtered = applyFilter(nodeData?.data?.dataset, filter.filter_key, filter.filter_value, filter.filter_column);
+        updateNodeData(id, { dataset: data_filtered });
     }, [filter]);
 
     const handleColumnChange = useCallback((value: string) => {
-        const columnValue = dataset[0]?.[value];
+        const columnValue = nodeData?.data?.dataset?.[0]?.[value];
         const isNumber = typeof columnValue === "number";
         setFilter({
             filter_column: value,
@@ -110,10 +108,10 @@ const FilterNode = ({ id,data, ...props }: { id: string; [key: string]: any }) =
             filter_key: "",
             filter_value: "",
         });
-    }, [dataset]);
+    }, [nodeData?.data?.dataset]);
 
     return (
-        <CustomNode title="Filter" id={id} input={`IN : ${dataset.length}`} output={`OP : ${data?.dataset?.length}`} {...props}>
+        <CustomNode title="Filter" id={id} input={`IN : ${nodeData?.data?.dataset?.length}`} output={`OP : ${data?.dataset?.length}`} {...props}>
             {nodeData?.id ? (
                 <>
                     <div className='mt-2'>
@@ -123,7 +121,7 @@ const FilterNode = ({ id,data, ...props }: { id: string; [key: string]: any }) =
                                 <SelectValue placeholder="Please select column" />
                             </SelectTrigger>
                             <SelectContent>
-                                {dataset.length > 0 && Object.keys(dataset[0]).map((el, index) => (
+                                {nodeData?.data?.dataset?.length > 0 && Object.keys(nodeData?.data?.dataset?.[0]).map((el, index) => (
                                     <SelectItem value={el} key={index}>{el}</SelectItem>
                                 ))}
                             </SelectContent>
@@ -133,7 +131,7 @@ const FilterNode = ({ id,data, ...props }: { id: string; [key: string]: any }) =
                         <>
                             <div className='mt-2'>
                                 <Label>Condition:</Label>
-                                <Select onValueChange={value => setFilter(prev => ({ ...prev, filter_key: value, filter_value:""}))}>
+                                <Select onValueChange={value => setFilter(prev => ({ ...prev, filter_key: value, filter_value: "" }))}>
                                     <SelectTrigger className="w-[260px] my-1 border-primary">
                                         <SelectValue placeholder="Select condition" />
                                     </SelectTrigger>

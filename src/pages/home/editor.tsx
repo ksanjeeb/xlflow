@@ -56,13 +56,13 @@ function Editor() {
     const [searchParams] = useSearchParams();
     const showBack = searchParams.get('back');
 
-    const [tableData, setTableData] = useState([]) ;
+    const [tableData, setTableData] = useState([]);
 
     const availableNodes = [
         {
             id: 'example_data',
             position: { x: 50, y: 100 },
-            data: { dataset:[] },
+            data: { dataset: [] },
             type: "exampleData",
             ...nodeBoth,
         },
@@ -70,84 +70,84 @@ function Editor() {
             id: 'file_upload',
             position: { x: 50, y: 250 },
             type: "fileUpload",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'google_sheet',
             position: { x: 50, y: 400 },
             type: "googleSheet",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'filter_node',
             position: { x: 500, y: 80 },
             type: "filterNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'merge_by_key_node',
             position: { x: 500, y: 240 },
             type: "mergeNode",
-            data: { dataset1:[], dataset2:[] },
+            data: { dataset1: [], dataset2: [] },
             ...nodeBoth,
         },
         {
             id: 'group_node',
             position: { x: 500, y: 400 },
             type: "groupNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'slice_node',
             position: { x: 500, y: 560 },
             type: "sliceNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'sort_node',
             position: { x: 1000, y: 80 },
             type: "sortNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'js_node',
             position: { x: 1000, y: 340 },
             type: "javascriptNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'bar_chart_node',
             position: { x: 1000, y: 580 },
             type: "barChart",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'stats_node',
             position: { x: 1400, y: 80 },
             type: "statsNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'textarea_node',
             position: { x: 1800, y: 280 },
             type: "textareaNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
         {
             id: 'export_node',
             position: { x: 1800, y: 80 },
             type: "exportNode",
-            data: { dataset:[] },
+            data: { dataset: [] },
             ...nodeBoth,
         },
     ];
@@ -159,34 +159,34 @@ function Editor() {
 
     const onConnect = useCallback(
         (params: any) => {
-          setEdges((prevEdges) => {
-            const filteredEdges = prevEdges.filter(
-              (edge:any) =>
-                !(edge.target === params.target && edge.targetHandle === params.targetHandle)
-            );
-                  const newEdges = addEdge(params, filteredEdges);
-      
-            return newEdges as never[];
-          });
+            setEdges((prevEdges) => {
+                const filteredEdges = prevEdges.filter(
+                    (edge: any) =>
+                        !(edge.target === params.target && edge.targetHandle === params.targetHandle)
+                );
+                const newEdges = addEdge(params, filteredEdges);
+
+                return newEdges as never[];
+            });
         },
         [],
-      );
+    );
 
     const handleCardClick = (value: any) => {
-        try{
-        const filterNode:any = availableNodes.find((each:any)=> each.id === value.key)
-        if (filterNode.id) {
-            const nodeToAdd = { ...filterNode, id: uuidv4() };
-            setNodes([...nodes, nodeToAdd]);
-          }
-        }catch(err){
+        try {
+            const filterNode: any = availableNodes.find((each: any) => each.id === value.key)
+            if (filterNode.id) {
+                const nodeToAdd = { ...filterNode, id: uuidv4() };
+                setNodes([...nodes, nodeToAdd]);
+            }
+        } catch (err) {
             console.error(err)
         }
     }
 
 
-    const onNodeClick=(event:any, node:any)=>{
-        const table:any = node?.data?.dataset;
+    const onNodeClick = (event: any, node: any) => {
+        const table: any = node?.data?.dataset;
         setTableData(table)
     }
 
@@ -218,9 +218,8 @@ function Editor() {
                         // fitView
                         nodeTypes={nodeTypes}
                         connectionLineStyle={{ strokeWidth: 3 }}
-                        onNodeClick={ onNodeClick}
-                        
-
+                        onNodeClick={onNodeClick}
+                        onPaneClick={()=> setTableData([])}
                     >
                         <Background />
                         <Controls />
@@ -235,7 +234,7 @@ function Editor() {
                             <p className="text-xs font-medium px-2 py-1 text-muted-foreground">OUTPUT</p>
                             <Separator />
                             <div className="h-full bg-card">
-                                <CustomTable data={tableData}/>
+                                <CustomTable data={tableData} />
                             </div>
                         </ResizablePanel>
                         <ResizableHandle />
