@@ -1,42 +1,17 @@
-// AuthContext.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-import Cookies from 'js-cookie';
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-
-interface AuthContextType {
-  isAuthenticated: { token: string; value: boolean };
-  login: (token: string) => void;
-  logout: () => void;
-}
-
-export const AuthContext = createContext<AuthContextType | null>(null);
+import { createContext, useContext, useState, ReactNode } from 'react';
+export const AuthContext = createContext<any>(null);
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isAuthenticated, setIsAuthenticated] = useState({ token: '', value: true });
-
-  useEffect(() => {
-    const token = Cookies.get('authToken');
-    if (token) {
-      setIsAuthenticated({ token: token, value: true });
-    }
-  }, []);
-
-  const login = (token: string) => {
-    Cookies.set('authToken', token, { expires: 1 }); // expires in 1 day
-    setIsAuthenticated({ token: token, value: true });
-  };
-
-  const logout = () => {
-    Cookies.remove('authToken');
-    setIsAuthenticated({ token: '', value: false });
-  };
+  const [user, setUser] = useState({});
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

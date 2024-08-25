@@ -2,12 +2,10 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import Dashboard from './pages/home/dashboard';
 import ProtectedRoute from './protected';
-import Login from './pages/auth/login';
-import Signup from './pages/auth/signup';
 import Settings from './pages/home/settings';
 import Layout from './pages/home/layout';
-import Resources from './pages/home/resources';
 import Editor from './pages/home/editor';
+import LoginOTP from './pages/auth/login-otp';
 
 
 function AppRoutes() {
@@ -28,10 +26,6 @@ function AppRoutes() {
         {
           path: "settings",
           element: <Settings />,
-        },
-        {
-          path: "resources",
-          element: <Resources />,
         }
       ],
     },
@@ -41,12 +35,9 @@ function AppRoutes() {
     },
     {
       path: "/login",
-      element: <Login />,
+      element: <LoginOTP />,
     },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
+
   ]);
 
   return (

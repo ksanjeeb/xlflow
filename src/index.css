@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes scale-up {
+  20% {
+    background-color: #ffffff;
+    transform: scaleY(1.5);
+  }
+  40% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-scale-up {
+  animation: scale-up 1s linear infinite;
+}
+
+.animation-delay-250 {
+  animation-delay: 0.25s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
 
 @layer base {
   .light {
