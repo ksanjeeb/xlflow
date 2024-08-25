@@ -3,23 +3,27 @@ import { memo } from 'react';
 import { Position, useReactFlow } from '@xyflow/react';
 import CustomHandle from './custom-handle';
 import { GripVertical, X } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 
 
 const CustomNode = ({ id = "", children, enableTarget = true, enableSource = true, enableSecondTarget = false, input = "", output = "", title }: any) => {
-    const { deleteElements } = useReactFlow();
+    const { deleteElements, getNodes, getEdges } = useReactFlow();
 
-    const handleRemove=async (_id:any)=>{
-        try {
-            const nodesToDelete = [_id];
-            const edgesToDelete = [_id]; 
-
-            const result = await deleteElements({ nodes: nodesToDelete, edges: edgesToDelete });
-
-            console.log(result);
-        } catch (error) {
-            console.error("Error deleting elements:", error);
-        }    }
+    const handleRemove = async (nodeId: string) => {
+      try {
+        const nodesToDelete = getNodes().filter(node => node.id === nodeId);
+        const edgesToDelete = getEdges().filter(edge => edge.source === nodeId || edge.target === nodeId);
+  
+        const result:any = await deleteElements({ nodes: nodesToDelete, edges: edgesToDelete });
+        if(result?.deletedNodes?.length > 0){
+            console.info(result);
+            toast.success("Successfully removed.")
+        }
+      } catch (error) {
+        console.error("Error deleting elements:", error);
+      }
+    };
 
     return (
         <>
