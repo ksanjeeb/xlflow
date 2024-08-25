@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import CustomTable from "@/components/shared/custom-table";
 import barChart from "@/components/shared/nodes/bar-chart";
 import exampleData from "@/components/shared/nodes/example-data";
 import exportNode from "@/components/shared/nodes/export-node";
@@ -20,7 +21,7 @@ import { Separator } from "@/components/ui/separator";
 import { addEdge, Background, Controls, MiniMap, Position, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 import { ChevronLeft } from "lucide-react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -54,6 +55,8 @@ function Editor() {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams();
     const showBack = searchParams.get('back');
+
+    const [tableData, setTableData] = useState([]) ;
 
     const availableNodes = [
         {
@@ -182,8 +185,10 @@ function Editor() {
     }
 
 
-
-
+    const onNodeClick=(event:any, node:any)=>{
+        const table:any = node?.data?.dataset;
+        setTableData(table)
+    }
 
     return (
         <div className="h-screen w-full bg-muted/40">
@@ -213,6 +218,8 @@ function Editor() {
                         // fitView
                         nodeTypes={nodeTypes}
                         connectionLineStyle={{ strokeWidth: 3 }}
+                        onNodeClick={ onNodeClick}
+
                     >
                         <Background />
                         <Controls />
@@ -227,7 +234,7 @@ function Editor() {
                             <p className="text-xs font-medium px-2 py-1 text-muted-foreground">OUTPUT</p>
                             <Separator />
                             <div className="h-full bg-card">
-
+                                <CustomTable data={tableData}/>
                             </div>
                         </ResizablePanel>
                         <ResizableHandle />

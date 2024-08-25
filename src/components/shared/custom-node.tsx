@@ -7,23 +7,27 @@ import toast from 'react-hot-toast';
 
 
 
+
 const CustomNode = ({ id = "", children, enableTarget = true, enableSource = true, enableSecondTarget = false, input = "", output = "", title }: any) => {
     const { deleteElements, getNodes, getEdges } = useReactFlow();
 
     const handleRemove = async (nodeId: string) => {
-      try {
-        const nodesToDelete = getNodes().filter(node => node.id === nodeId);
-        const edgesToDelete = getEdges().filter(edge => edge.source === nodeId || edge.target === nodeId);
-  
-        const result:any = await deleteElements({ nodes: nodesToDelete, edges: edgesToDelete });
-        if(result?.deletedNodes?.length > 0){
-            console.info(result);
-            toast.success("Successfully removed.")
+        try {
+            const nodesToDelete = getNodes().filter(node => node.id === nodeId);
+            const edgesToDelete = getEdges().filter(edge => edge.source === nodeId || edge.target === nodeId);
+
+            const result: any = await deleteElements({ nodes: nodesToDelete, edges: edgesToDelete });
+            if (result?.deletedNodes?.length > 0) {
+                console.info(result);
+                toast.success("Successfully removed.")
+            }
+        } catch (error) {
+            console.error("Error deleting elements:", error);
         }
-      } catch (error) {
-        console.error("Error deleting elements:", error);
-      }
     };
+
+
+
 
     return (
         <>
@@ -51,7 +55,7 @@ const CustomNode = ({ id = "", children, enableTarget = true, enableSource = tru
 
                 <div className='text-sm p-[4px] flex flex-row justify-between border-b-2 border-neutral-600'>
                     <div className='self-center flex flex-row'><GripVertical size={14} className='self-center' />{title}</div>
-                    <div className='self-center nodrag hover:text-red-700 cursor-pointer' onClick={()=>handleRemove(id)}>
+                    <div className='self-center nodrag hover:text-red-700 cursor-pointer' onClick={() => handleRemove(id)}>
                         <X size={14} />
                     </div>
                 </div>
