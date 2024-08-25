@@ -5,11 +5,12 @@ import { FileUp, Trash2 } from "lucide-react";
 import { useReactFlow } from "@xyflow/react";
 import Papa from 'papaparse';
 import toast from "react-hot-toast";
+import { useLogsStore } from "@/lib/store";
 
 const FileUpload = ({ id, data, ...props }: any) => {
     const { updateNodeData } = useReactFlow();
     const [parsing, setParsing] = useState(false);
-
+    const {update} = useLogsStore();
     const handleFileChange = (event: any) => {
         try {
             const file = event.target.files[0];

@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useHandleConnections, useNodesData, useReactFlow } from "@xyflow/react";
 import { Button } from "@/components/ui/button";
 import { downloadJSON } from "@/lib/utils";
+import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
 
 interface GroupNodeProps {
   id: string;
@@ -19,22 +20,15 @@ interface GroupNodeProps {
   [key: string]: any;
 }
 
+const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
-const groupByKey = (data: any, key: string) => {
-  return data.reduce((result: { [key: string]:any }, item:any) => {
-    const groupKey = item[key];
-    if (!result[groupKey]) {
-      result[groupKey] = [];
-    }
-    result[groupKey].push(item);
-    return result;
-  }, {});
-};
+
+
 
 const GroupNode = ({ id, data, ...props }: GroupNodeProps) => {
   const [groupByFilter, setGroupByFilter] = useState("");
   const { updateNodeData } = useReactFlow();
-
+  const worker = useWorker(createWorker);
   const connectionsTarget = useHandleConnections({
     type: "target",
     id: `target_${id}`,
@@ -49,8 +43,10 @@ const GroupNode = ({ id, data, ...props }: GroupNodeProps) => {
 
   useEffect(() => {
     if (groupByFilter && nodeData?.data?.dataset) {
-      const filteredData = groupByKey(nodeData.data.dataset, groupByFilter);
-      updateNodeData(id, { dataset: filteredData });
+      (async ()=>{
+        const filteredData = await worker.groupByKey(nodeData.data.dataset, groupByFilter);
+        updateNodeData(id, { dataset: filteredData });
+      })()
     }
   }, [groupByFilter]);
 

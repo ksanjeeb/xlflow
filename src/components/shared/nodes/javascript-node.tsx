@@ -8,28 +8,22 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css';
 import { Button } from '@/components/ui/button';
 import { useHandleConnections, useNodesData, useReactFlow } from '@xyflow/react';
-import toast from 'react-hot-toast';
+import { createWorkerFactory, useWorker } from '@shopify/react-web-worker';
 
 interface JavascriptNodeProps {
   id: string;
   [key: string]: any;
 }
 
-const handleExecute = async (dataset: any, fullCode: any) => {
-  try {
-    const dynamicFunction = new Function('return ' + fullCode)();
-    return await dynamicFunction(dataset);
-  } catch (error) {
-    toast.error('Function execution error:' + error)
-    console.error('Function creation error:', error);
-  }
-};
+const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
+
 
 const JavascriptNode = ({ id,data, ...props }: JavascriptNodeProps) => {
   const fixedCodeTop = 'async function(dataset) {\n';
   const fixedCodeBottom = '\n}';
   const [editableCode, setEditableCode] = useState<string>('  // Your JavaScript code here \nreturn null;');
   const fullCode = `${fixedCodeTop}${editableCode}${fixedCodeBottom}`;
+  const worker = useWorker(createWorker);
 
   const { updateNodeData } = useReactFlow();
 
@@ -47,9 +41,11 @@ const JavascriptNode = ({ id,data, ...props }: JavascriptNodeProps) => {
 
 
   const handleRunButton = useCallback(async () => {
-    const filteredData = await handleExecute(nodeData.data.dataset, fullCode);
-    console.log(filteredData)
-    updateNodeData(id, { dataset: filteredData });
+    (async ()=>{
+      const filteredData = await worker.handleExecute(nodeData?.data?.dataset, fullCode);
+      console.log(filteredData)
+      updateNodeData(id, { dataset: filteredData });
+    })()
   },[]);
 
   return (

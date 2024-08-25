@@ -21,6 +21,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@shopify/react-web-worker": "^5.1.4",
     "@types/js-cookie": "^3.0.6",
     "@xyflow/react": "^12.1.0",
     "class-variance-authority": "^0.7.0",

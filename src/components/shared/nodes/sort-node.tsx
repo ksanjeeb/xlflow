@@ -4,26 +4,15 @@ import CustomNode from '../custom-node';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useHandleConnections, useNodesData, useReactFlow } from '@xyflow/react';
+import { createWorkerFactory, useWorker } from '@shopify/react-web-worker';
 
-const handleSort = (data:any, { column_name, order }:{ column_name:string, order:string }) => {
-    if (!column_name || !order) {
-        return data; 
-    }
+const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
-    const normalizedOrder = order.toLowerCase() === 'asc' ? 1 : -1;
-
-    return [...data].sort((a, b) => {
-        const aValue = a[column_name];
-        const bValue = b[column_name];
-        if (aValue < bValue) return -normalizedOrder;
-        if (aValue > bValue) return normalizedOrder;
-        return 0;
-    });
-};
 
 function SortNode({ id,data, ...props }: any) {
     const [sort, setSort] = useState({ column_name: "", order: "" })
     const { updateNodeData } = useReactFlow();
+    const worker = useWorker(createWorker);
 
     const connectionsTarget = useHandleConnections({
         type: "target",
@@ -33,9 +22,11 @@ function SortNode({ id,data, ...props }: any) {
 
 
     useEffect(() => {
-        const data: any = nodeData?.data?.dataset || [];
-        const modifiedData = handleSort(data, sort);
-        updateNodeData(id, { dataset: modifiedData });
+        (async ()=>{
+            const data: any = nodeData?.data?.dataset || [];
+            const modifiedData = await worker.handleSort(data, sort);
+            updateNodeData(id, { dataset: modifiedData });
+        })()
     }, [sort, nodeData]);
 
 

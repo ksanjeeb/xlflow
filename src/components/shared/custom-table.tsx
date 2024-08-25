@@ -27,7 +27,7 @@ function CustomTable({ data = [], ...props }: CustomTableProps) {
     const theme = useTheme();
 
     const columns = useMemo(() => {
-        return data.length > 0
+        return data?.length > 0
             ? Object.keys(data[0]).map((el: string) => ({ title: el, id: el, filter: true }))
             : [];
     }, [data]);
@@ -68,7 +68,7 @@ function CustomTable({ data = [], ...props }: CustomTableProps) {
 
     return (
         <div className="pb-2 h-full w-full overflow-x-scroll" {...props}>
-            {data.length > 0 ? (
+            {data?.length > 0 ? (
                 <DataEditor
                     getCellContent={getCellContent}
                     columns={columns}

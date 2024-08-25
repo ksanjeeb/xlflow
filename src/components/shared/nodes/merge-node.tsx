@@ -5,43 +5,17 @@ import CustomNode from "../custom-node";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useHandleConnections, useNodesData, useReactFlow } from "@xyflow/react";
+import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
 
-type JsonObject = { [key: string]: any };
+const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
 
-function mergeByColumn(dataset1: JsonObject[], dataset2: JsonObject[], key: string): any {
-    try {
-        const mergedMap: { [key: string]: JsonObject } = {};
-        for (const item of dataset1) {
-            if (item.hasOwnProperty(key)) {
-                mergedMap[item[key]] = { ...item };
-            } else {
-                mergedMap[item[key]] = item;
-            }
-        }
 
-        for (const item of dataset2) {
-            if (item.hasOwnProperty(key)) {
-                if (mergedMap[item[key]]) {
-                    mergedMap[item[key]] = { ...mergedMap[item[key]], ...item };
-                } else {
-                    mergedMap[item[key]] = item;
-                }
-            } else {
-                mergedMap[item[key]] = item;
-            }
-        }
-
-        return Object.values(mergedMap);
-    } catch (err) {
-        update(err)
-console.error(err)
-    }
-}
 
 const MergeByColumnKey = ({ id, data, ...props }: any) => {
     const [mergeColumn, setMergeColumn] = useState<{ list: string[], column_key: string }>({ list: [], column_key: "" });
     const { updateNodeData } = useReactFlow();
+    const worker = useWorker(createWorker);
 
     const connectionsTarget1 = useHandleConnections({ type: 'target', id: `target_${id}` });
     const connectionsTarget2 = useHandleConnections({ type: 'target', id: `target_2_${id}` });
@@ -77,9 +51,10 @@ const MergeByColumnKey = ({ id, data, ...props }: any) => {
         const dataset1: any = nodeData1?.data?.dataset || [];
         const dataset2: any = nodeData2?.data?.dataset || [];
         if (mergeColumn?.column_key && dataset1 && dataset2) {
-            const filteredData = mergeByColumn(dataset1, dataset2, mergeColumn?.column_key);
-            console.log(filteredData)
-            updateNodeData(id, { dataset: filteredData });
+            (async ()=>{
+                const modifiedData = await worker.mergeByColumn(dataset1, dataset2, mergeColumn?.column_key);
+                updateNodeData(id, { dataset: modifiedData });
+            })()
         }
     }, [mergeColumn]);
 

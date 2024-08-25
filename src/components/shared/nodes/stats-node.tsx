@@ -4,29 +4,10 @@ import CustomNode from "../custom-node";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useHandleConnections, useNodesData, useReactFlow } from "@xyflow/react";
+import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
 
-const handleStatsCalculation = (data: any[], columnName: string) => {
-    if (!columnName) {
-        return { min: 0, max: 0, average: 0, median: 0, sum: 0 };
-    }
+const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
-    const columnData = data.map((row: any) => Number(row[columnName])).filter((value) => !isNaN(value));
-
-    if (columnData.length === 0) {
-        return { min: 0, max: 0, average: 0, median: 0, sum: 0 };
-    }
-
-    const sum = columnData.reduce((a, b) => a + b, 0);
-    const min = Math.min(...columnData);
-    const max = Math.max(...columnData);
-    const average = sum / columnData.length;
-    const sortedData = columnData.sort((a, b) => a - b);
-    const median = sortedData.length % 2 === 0
-        ? (sortedData[sortedData.length / 2 - 1] + sortedData[sortedData.length / 2]) / 2
-        : sortedData[Math.floor(sortedData.length / 2)];
-
-    return { min, max, average, median, sum };
-};
 
 const formatNumber = (num: number) => {
     if (num % 1 !== 0) {
@@ -35,10 +16,13 @@ const formatNumber = (num: number) => {
     return num.toString();
 };
 
+
 const StatsNode = ({ id, data, props }: any) => {
     const [inputData, setInputData] = useState({ column_name: "" });
     const [calculation, setCalculation] = useState({ min: 0, max: 0, average: 0, median: 0, sum: 0 });
     const { updateNodeData } = useReactFlow();
+    const worker = useWorker(createWorker);
+
 
     const connectionsTarget = useHandleConnections({
         type: "target",
@@ -49,10 +33,12 @@ const StatsNode = ({ id, data, props }: any) => {
     useEffect(() => {
         const data: any = nodeData?.data?.dataset || [];
         updateNodeData(id, { dataset: data });
+        (async ()=>{
+            const calculation = await worker.handleStatsCalculation(data, inputData.column_name);
+            setCalculation(calculation);
+        })()
 
-        const calculation = handleStatsCalculation(data, inputData.column_name);
-        setCalculation(calculation);
-    }, [nodeData, inputData, updateNodeData, id]);
+    }, [nodeData, inputData]);
 
     return (
         <CustomNode title="Stats" id={id} input={`IN : ${nodeData?.data?.dataset?.length || 0}`} output={`OP : ${data?.dataset?.length || 0}`} {...props}>

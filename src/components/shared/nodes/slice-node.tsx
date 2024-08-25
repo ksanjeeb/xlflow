@@ -4,23 +4,15 @@ import CustomNode from "../custom-node";
 import { memo, useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { useHandleConnections, useNodesData, useReactFlow } from "@xyflow/react";
+import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
 
+const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
-const handleSlice = (data: any, sliceIndex: any) => {
-    const { from, to } = sliceIndex;
-    if (from == 0 && to == 0) return data;
-    const isValid = from >= 0 && to <= data.length && from < to;
-    if (!isValid) {
-        console.error("Invalid slice indices");
-        return [];
-    }
-
-    return data.slice(Number(from), Number(to));
-};
 
 function SliceNode({ id, data, ...props }: any) {
     const [sliceIndex, setSliceIndex] = useState({ from: "", to: "" });
     const { updateNodeData } = useReactFlow();
+    const worker = useWorker(createWorker);
 
     const connectionsTarget = useHandleConnections({
         type: "target",
@@ -30,9 +22,12 @@ function SliceNode({ id, data, ...props }: any) {
 
 
     useEffect(() => {
-        const data: any = nodeData?.data?.dataset || [];
-        const modifiedData = handleSlice(data, sliceIndex)
-        updateNodeData(id, { dataset: modifiedData });
+        (async ()=>{
+            const data: any = nodeData?.data?.dataset || [];
+            const modifiedData = await worker.handleSlice(data, sliceIndex)
+            updateNodeData(id, { dataset: modifiedData });
+        })()
+
     }, [sliceIndex, nodeData]);
 
 
