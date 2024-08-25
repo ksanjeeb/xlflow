@@ -219,6 +219,7 @@ function Editor() {
                         nodeTypes={nodeTypes}
                         connectionLineStyle={{ strokeWidth: 3 }}
                         onNodeClick={ onNodeClick}
+                        
 
                     >
                         <Background />
