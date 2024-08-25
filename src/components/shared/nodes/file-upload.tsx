@@ -52,7 +52,8 @@ const FileUpload = ({ id, data, ...props }: any) => {
                 }
             }
         } catch (err) {
-            console.error(err)
+            update(err)
+console.error(err)
         }
     };
 

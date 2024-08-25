@@ -34,7 +34,8 @@ function mergeByColumn(dataset1: JsonObject[], dataset2: JsonObject[], key: stri
 
         return Object.values(mergedMap);
     } catch (err) {
-        console.error(err)
+        update(err)
+console.error(err)
     }
 }
 

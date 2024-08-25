@@ -34,7 +34,8 @@ const GoogleSheet = ({id, data, ...props}: any) => {
                 toast.error("Please add URL.")
             }
         } catch (err) {
-            console.error(err)
+            update(err)
+console.error(err)
         }
     };
 

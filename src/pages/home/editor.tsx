@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
+import { useLogsStore } from "@/lib/store";
 import { addEdge, Background, Controls, MiniMap, Position, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 import { ChevronLeft } from "lucide-react";
@@ -155,6 +156,7 @@ function Editor() {
 
     const [nodes, setNodes, onNodesChange] = useNodesState<any>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+    const { logs, update } = useLogsStore()
 
 
     const onConnect = useCallback(
@@ -180,6 +182,7 @@ function Editor() {
                 setNodes([...nodes, nodeToAdd]);
             }
         } catch (err) {
+            update(err)
             console.error(err)
         }
     }
@@ -219,7 +222,7 @@ function Editor() {
                         nodeTypes={nodeTypes}
                         connectionLineStyle={{ strokeWidth: 3 }}
                         onNodeClick={onNodeClick}
-                        onPaneClick={()=> setTableData([])}
+                        onPaneClick={() => setTableData([])}
                     >
                         <Background />
                         <Controls />
@@ -241,8 +244,10 @@ function Editor() {
                         <ResizablePanel>
                             <p className="text-xs font-medium px-2 py-1 text-muted-foreground">LOGS</p>
                             <Separator />
-                            <div className="h-full bg-card">
-
+                            <div className="h-full bg-card  flex flex-row gap-2 overflow-auto">
+                                {
+                                    logs?.map((el: any, index: number) => (<div className="w-full"><p key={index} className={`text-muted-foreground p-2 text-xs w-full`}>{el}</p><Separator /></div>))
+                                }
                             </div>
                         </ResizablePanel>
                     </ResizablePanelGroup>
