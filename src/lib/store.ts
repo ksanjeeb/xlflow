@@ -20,7 +20,10 @@ const useTableStore = create<Store>()((set) => ({
 
 const useLogsStore = create<LogsStore>()((set) => ({
   logs: ["Currently, this application is in the beta stage."],
-  update: (data) => set((state) => ({ logs: state.logs.push(data) })),
+  update: (data) => set((state) => ({ 
+    logs: state
+    // state.logs.push(data) 
+  })),
   reset: () => set(() => ({ logs: ["Currently, this application is in the beta stage."] })),
 }));
 

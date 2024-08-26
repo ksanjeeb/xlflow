@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import flowService from "@/appwrite/db";
 import CustomTable from "@/components/shared/custom-table";
 import barChart from "@/components/shared/nodes/bar-chart";
 import exampleData from "@/components/shared/nodes/example-data";
@@ -22,7 +23,8 @@ import { useLogsStore } from "@/lib/store";
 import { addEdge, Background, Controls, MiniMap, Position, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 import { ChevronLeft } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -156,7 +158,26 @@ function Editor() {
 
     const [nodes, setNodes, onNodesChange] = useNodesState<any>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+    const [meta, setMeta] = useState({ name: "", description: "" })
     const { logs, update } = useLogsStore()
+
+    const fetchFlow = (_id: string) => {
+        try {
+            flowService.getFlow(_id).then((res) => {
+                setNodes(res?.nodes);
+                setMeta({ name: res?.name, description: res?.description })
+                setEdges(res?.edges);
+            }
+            ).catch((err) => {
+                update(err);
+                console.error(err);
+                toast.error("Error: " + err)
+            })
+        } catch (err) {
+            update(err)
+            console.error(err)
+        }
+    }
 
 
     const onConnect = useCallback(
@@ -193,6 +214,81 @@ function Editor() {
         setTableData(table)
     }
 
+
+    useEffect(() => {
+        if (workflowID && workflowID !== "new") fetchFlow(workflowID);
+        else setMeta({ name: "New Workflow", description: "" })
+    }, []);
+
+    const handleSaveWorkflow = () => {
+        try {
+            const flowData = {
+                ...meta,
+                nodes: nodes.map(node => {
+                    const { type } = node;
+                    if (type !== 'exampleData' && type !== 'googleSheet' && type !== 'fileUpload') {
+                        return {
+                            ...node,
+                            data: {
+                                ...node.data,
+                                dataset: []
+                            }
+                        };
+                    }
+                    return node;
+                }),
+                edges
+            };
+            flowService.createFlow(flowData).then((res) => {
+                console.log(res);
+                toast.success("Workflow created successfully.");
+                navigate("/dashboard");
+            }).catch((err: any) => {
+                toast.error("Failed to save.");
+                console.error(err);
+                update(err.message)
+            })
+        } catch (err) {
+            console.error(err);
+            update(err)
+        }
+    }
+
+    const handleUpdateWorkflow = () => {
+        try {
+            if (!workflowID || workflowID === "new") return;
+            const flowData = {
+                ...meta,
+                nodes: nodes.map(node => {
+                    const { type } = node;
+                    if (type !== 'exampleData' && type !== 'googleSheet' && type !== 'fileUpload') {
+                        return {
+                            ...node,
+                            data: {
+                                ...node.data,
+                                dataset: []
+                            }
+                        };
+                    }
+                    return node;
+                }),
+                edges
+            };
+            flowService.updateFlow(workflowID as string, flowData).then((res) => {
+                console.log(res);
+                toast.success("Workflow created successfully.")
+                navigate("/dashboard");
+            }).catch((err: any) => {
+                toast.error("Failed to save.");
+                console.error(err);
+                update(err.message)
+            })
+        } catch (err) {
+            console.error(err);
+            update(err)
+        }
+    }
+
     return (
         <div className="h-screen w-full bg-muted/40">
             <ResizablePanelGroup direction="vertical">
@@ -200,13 +296,13 @@ function Editor() {
                     <div className="flex flex-row gap-2">
                         {showBack && <Button variant={"secondary"} size={"icon"} onClick={() => navigate("/dashboard")}><ChevronLeft /></Button>}
                         <Label className="hidden md:block self-center mx-2">
-                            {workflowID === "new" ? "Workflow" : workflowID}
+                            {meta?.name}
                         </Label>
                         <BlocksList onAction={handleCardClick} />
                     </div>
                     <div className="flex flex-col md:flex-row gap-2">
-                        {workflowID === "new" && <Button variant={"secondary"} >Save</Button>}
-                        {workflowID !== "new" && <Button variant={"outline"} >Update</Button>}
+                        {workflowID === "new" && <Button variant={"secondary"} onClick={handleSaveWorkflow}>Save</Button>}
+                        {workflowID !== "new" && nodes?.length > 0 && edges.length > 0 && <Button variant={"outline"} onClick={handleUpdateWorkflow}>Update</Button>}
                         {/* {workflowID !== "new" && <Button variant={"destructive"} >Delete</Button>} */}
                     </div>
                 </div>
