@@ -20,11 +20,26 @@ const useTableStore = create<Store>()((set) => ({
 
 const useLogsStore = create<LogsStore>()((set) => ({
   logs: ["Currently, this application is in the beta stage."],
-  update: (_data:any) => set((state) => ({ 
-    logs: state
-    // state.logs.push(data) 
-  })),
-  reset: () => set(() => ({ logs: ["Currently, this application is in the beta stage."] })),
+  update: (_data: any) =>
+    set((state) => {
+      let logEntry: string;
+
+      if (typeof _data === "string") {
+        logEntry = _data;
+      } else if (typeof _data === "object" && _data.message) {
+        logEntry = _data.message;
+      } else {
+        logEntry = "Error: Unknown error";
+      }
+
+      return {
+        logs: [...state.logs, logEntry],
+      };
+    }),
+  reset: () =>
+    set(() => ({
+      logs: ["Currently, this application is in the beta stage."],
+    })),
 }));
 
 export { useTableStore, useLogsStore };

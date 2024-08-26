@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Databases, ID } from "appwrite";
+import { Client, Databases, ID,  Query } from "appwrite";
 
 export class DatabaseService {
   private client: Client;
@@ -16,7 +16,7 @@ export class DatabaseService {
     return await this.database.listDocuments(
       import.meta.env.VITE_DATABASE_ID as string,
       import.meta.env.VITE_COLLECTION_ID as string,
-      ["name", "description"]
+      [Query.select(["name", "description" , "$id"])]
     );
   }
 
@@ -33,7 +33,7 @@ export class DatabaseService {
       import.meta.env.VITE_DATABASE_ID as string,
       import.meta.env.VITE_COLLECTION_ID as string,
       ID.unique(),
-      data
+      data,
     );
   }
 
