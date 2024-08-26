@@ -34,46 +34,7 @@ const num_types = [
     "data_matches_regex",
 ];
 
-// const applyFilter = (
-//     data: any[],
-//     filterKey: string,
-//     filterValue: string | number,
-//     filterColumn: string
-// ): any[] => {
-//     if (!filterKey || !filterValue || !filterColumn) return data;
-
-//     switch (filterKey) {
-//         case "text_is_exactly":
-//             return data.filter(item => item[filterColumn] == filterValue);
-//         case "text_is_not_exactly":
-//             return data.filter(item => item[filterColumn] != filterValue);
-//         case "text_includes":
-//             return data.filter(item => item[filterColumn]?.includes(filterValue));
-//         case "text_does_not_include":
-//             return data.filter(item => !item[filterColumn]?.includes(filterValue));
-//         case "data_is_not_empty_or_null":
-//             return data.filter(item => item[filterColumn] != null && item[filterColumn] !== '');
-//         case "data_matches_regex":
-//             // eslint-disable-next-line no-case-declarations
-//             const regex = new RegExp(filterValue as string);
-//             return data.filter(item => regex.test(item[filterColumn]));
-//         case "number_equals":
-//             return data.filter(item => item[filterColumn] == Number(filterValue));
-//         case "number_is_greater_than":
-//             return data.filter(item => item[filterColumn] > Number(filterValue));
-//         case "number_is_greater_than_or_equals":
-//             return data.filter(item => item[filterColumn] >= Number(filterValue));
-//         case "number_is_less_than":
-//             return data.filter(item => item[filterColumn] < Number(filterValue));
-//         case "number_is_less_than_or_equals":
-//             return data.filter(item => item[filterColumn] <= Number(filterValue));
-//         default:
-//             return data;
-//     }
-// };
-
 const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
-
 
 const initialFilter: FilterState = {
     filter_column: "",
@@ -81,33 +42,39 @@ const initialFilter: FilterState = {
     type: "",
     filter_key: "",
     filter_value: "",
-}
+};
 
-
-const FilterNode = ({ id, data, ...props }: { id: string;[key: string]: any }) => {
+const FilterNode = ({ id, data, ...props }: { id: string; [key: string]: any }) => {
     const { updateNodeData } = useReactFlow();
 
     const connectionsTarget = useHandleConnections({ type: 'target', id: `target_${id}` });
     const nodeData: any = useNodesData(connectionsTarget?.[0]?.source);
     const worker = useWorker(createWorker);
 
-
     useEffect(() => {
-        const data: any = nodeData?.data?.dataset || [];
-        updateNodeData(id, { dataset: data, filter: initialFilter });
-    }, [nodeData.data.dataset]);
+        const dataset: any = nodeData?.data?.dataset || [];
+        updateNodeData(id, { dataset: dataset, filter: initialFilter });
+    }, [nodeData?.data?.dataset]);
 
     useEffect(() => {
         (async () => {
-            const data_filtered = await worker.applyFilter(nodeData?.data?.dataset, nodeData?.data?.filter_key, nodeData?.data?.filter_value, nodeData?.data?.filter_column);
-            updateNodeData(id, { dataset: data_filtered });
+            if (data?.filter?.filter_key && data?.filter?.filter_column) {
+                const data_filtered = await worker.applyFilter(
+                    nodeData?.data?.dataset,
+                    data?.filter?.filter_key,
+                    data?.filter?.filter_value,
+                    data?.filter?.filter_column
+                );
+                updateNodeData(id, { dataset: data_filtered });
+            }
         })();
-    }, [nodeData.data.filter]);
+    }, [data?.filter]);
 
     const handleColumnChange = useCallback((value: string) => {
         const columnValue = nodeData?.data?.dataset?.[0]?.[value];
         const isNumber = typeof columnValue === "number";
         const filter = {
+            ...data?.filter,
             filter_column: value,
             filter_list: isNumber ? num_types : text_type,
             type: isNumber ? "number" : "text",
@@ -115,19 +82,19 @@ const FilterNode = ({ id, data, ...props }: { id: string;[key: string]: any }) =
             filter_value: "",
         };
         updateNodeData(id, { filter });
-
     }, [nodeData?.data?.dataset]);
 
-    const handleFilterChange = (key: string, value: any) => {
-        const filter = { ...nodeData?.data?.filter }
+    const handleFilterChange = useCallback((key: string, value: any) => {
+        const filter = { ...data?.filter };
         if (key === "condition") {
             filter.filter_key = value;
-            filter.filter_value = ""
-        } else if(key==="value"){
-            filter.filter_value = value
+            filter.filter_value = "";
+        } else if (key === "value") {
+            filter.filter_value = value;
         }
         updateNodeData(id, { filter });
-    }
+    }, [data?.filter]);
+
 
     return (
         <CustomNode title="Filter" id={id} input={`IN : ${nodeData?.data?.dataset?.length}`} output={`OP : ${data?.dataset?.length}`} {...props}>
@@ -135,7 +102,7 @@ const FilterNode = ({ id, data, ...props }: { id: string;[key: string]: any }) =
                 <>
                     <div className='mt-2'>
                         <Label>Column name:</Label>
-                        <Select onValueChange={handleColumnChange} value={nodeData?.data?.filter.filter_column}>
+                        <Select onValueChange={handleColumnChange} value={data?.filter?.filter_column}>
                             <SelectTrigger className="w-[260px] my-1 border-primary">
                                 <SelectValue placeholder="Please select column" />
                             </SelectTrigger>
@@ -146,26 +113,26 @@ const FilterNode = ({ id, data, ...props }: { id: string;[key: string]: any }) =
                             </SelectContent>
                         </Select>
                     </div>
-                    {nodeData?.data?.filter.filter_column && (
+                    {data?.filter?.filter_column && (
                         <>
                             <div className='mt-2'>
                                 <Label>Condition:</Label>
-                                <Select onValueChange={value => handleFilterChange("condition", value)}>
+                                <Select onValueChange={value => handleFilterChange("condition", value)} value={data?.filter?.filter_key}>
                                     <SelectTrigger className="w-[260px] my-1 border-primary">
                                         <SelectValue placeholder="Select condition" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {nodeData?.data?.filter?.filter_list.map((each:any, index:number) => (
+                                        {data?.filter?.filter_list?.map((each: any, index: number) => (
                                             <SelectItem key={index} value={each}>{each.replace(/_/g, ' ')}</SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>
                             </div>
-                            {nodeData?.data?.filter?.filter_key && (
+                            {data?.filter?.filter_key && (
                                 <div className='mt-2'>
                                     <Input
-                                        type={nodeData?.data?.filter?.type}
-                                        value={nodeData?.data?.filter?.filter_value}
+                                        type={data?.filter?.type}
+                                        value={data?.filter?.filter_value}
                                         onChange={e => handleFilterChange("value", e.target.value)}
                                         className='my-2 min-w-64 border-2 border-primary'
                                     />
