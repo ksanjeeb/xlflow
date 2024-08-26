@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect } from "react";
 import CustomNode from "../custom-node";
 import {
   Select,
@@ -26,29 +26,33 @@ const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
 
 const GroupNode = ({ id, data, ...props }: GroupNodeProps) => {
-  const [groupByFilter, setGroupByFilter] = useState("");
+  // const [groupByFilter, setGroupByFilter] = useState("");
   const { updateNodeData } = useReactFlow();
   const worker = useWorker(createWorker);
   const connectionsTarget = useHandleConnections({
     type: "target",
     id: `target_${id}`,
   });
-  const nodeData:any = useNodesData(connectionsTarget?.[0]?.source);
+  const nodeData: any = useNodesData(connectionsTarget?.[0]?.source);
 
   useEffect(() => {
     if (nodeData?.data?.dataset) {
-      updateNodeData(id, { dataset: nodeData.data.dataset });
+      updateNodeData(id, { dataset: nodeData.data.dataset, group_by_filter: "" });
     }
   }, [nodeData?.data]);
 
   useEffect(() => {
-    if (groupByFilter && nodeData?.data?.dataset) {
-      (async ()=>{
-        const filteredData = await worker.groupByKey(nodeData.data.dataset, groupByFilter);
+    if (data?.group_by_filter && nodeData?.data?.dataset) {
+      (async () => {
+        const filteredData = await worker.groupByKey(nodeData.data.dataset, data?.group_by_filter);
         updateNodeData(id, { dataset: filteredData });
       })()
     }
-  }, [groupByFilter]);
+  }, [data?.group_by_filter]);
+
+  const handleGroupBy = useCallback((val: string) => {
+    updateNodeData(id, { group_by_filter: val });
+  }, [])
 
 
 
@@ -66,7 +70,7 @@ const GroupNode = ({ id, data, ...props }: GroupNodeProps) => {
       {nodeData?.data?.dataset?.length > 0 ? (
         <>
           <Label>Column name:</Label>
-          <Select onValueChange={(e: any) => setGroupByFilter(e)} value={groupByFilter}>
+          <Select onValueChange={(e: any) => handleGroupBy(e)} value={data?.group_by_filter}>
             <SelectTrigger className="w-[260px] my-1 border-primary">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
