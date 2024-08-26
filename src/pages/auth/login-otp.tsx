@@ -1,5 +1,5 @@
 
-import { account, ID } from "@/appwrite"
+import authService from "@/appwrite/auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -20,11 +20,7 @@ export default function LoginOTP() {
                 toast.error("Please provide mail.");
                 return;
             }
-            const response = await account.createEmailToken(
-                ID.unique(),
-                user.mail,
-                true
-            );
+            const response = await authService.sendEmailOTP({ email: user.mail });
             setUser({ ...user, id: response?.userId })
             response?.userId && setEnableOTP(true);
         } catch (err) {
@@ -42,10 +38,7 @@ export default function LoginOTP() {
                 toast.error("Please provide otp.");
                 return;
             }
-            const sessionToken = await account.createSession(
-                user.id,
-                user.otp
-            );
+            const sessionToken = await authService.verifyOTP({ userID: user.id, secret: user.otp });
             if (sessionToken.userId) {
                 navigate("/dashboard")
             }

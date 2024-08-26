@@ -2,8 +2,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './lib/auth-provider';
 import { useEffect, useState } from 'react';
-import { account } from '@/appwrite';
 import Loader from './components/ui/loader';
+import authService from './appwrite/auth';
 
 
 
@@ -15,7 +15,7 @@ const ProtectedRoute = ({ element }: any) => {
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
-                const session = await account.get(); // Replace this with the appropriate API call to check authentication
+                const session = await authService.getCurrentSession(); // Replace this with the appropriate API call to check authentication
                 if (session) {
                     setUser(session);
                     setIsLoading(false)

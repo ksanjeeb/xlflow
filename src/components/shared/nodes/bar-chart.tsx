@@ -64,7 +64,7 @@ function BarchartNode({ id, data, ...props }: any) {
                     >
                         <BarChart
                             accessibilityLayer
-                            data={data?.dataset}
+                            data={data?.dataset.slice(0, 1000)}
                             margin={{
                                 left: 12,
                                 right: 12,
@@ -87,6 +87,7 @@ function BarchartNode({ id, data, ...props }: any) {
                             <Bar dataKey={inputData.y_axis} fill={`white`} />
                         </BarChart>
                     </ChartContainer>
+                    <p className="text-xs text-muted-foreground mt-2">*current chart supports only thousand records</p>
                 </div>
             </div> : <p className='my-2 min-w-64 text-muted-foreground'>Please attach valid dataset.</p>}
         </CustomNode >
