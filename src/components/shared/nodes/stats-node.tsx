@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import CustomNode from "../custom-node";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -18,7 +18,7 @@ const formatNumber = (num: number) => {
 
 
 const StatsNode = ({ id, data, props }: any) => {
-    const [inputData, setInputData] = useState({ column_name: "" });
+    // const [inputData, setInputData] = useState({ column_name: "" });
     const [calculation, setCalculation] = useState({ min: 0, max: 0, average: 0, median: 0, sum: 0 });
     const { updateNodeData } = useReactFlow();
     const worker = useWorker(createWorker);
@@ -31,14 +31,20 @@ const StatsNode = ({ id, data, props }: any) => {
     const nodeData: any = useNodesData(connectionsTarget?.[0]?.source);
 
     useEffect(() => {
-        const data: any = nodeData?.data?.dataset || [];
-        updateNodeData(id, { dataset: data });
+        const dataset: any = nodeData?.data?.dataset || [];
+        updateNodeData(id, { dataset: dataset });
         (async ()=>{
-            const calculation = await worker.handleStatsCalculation(data, inputData.column_name);
+            const calculation = await worker.handleStatsCalculation(dataset, data?.column_name);
             setCalculation(calculation);
         })()
 
-    }, [nodeData, inputData]);
+    }, [nodeData, data.column_name]);
+
+
+    const handleColumnChange=useCallback((value:string)=>{
+        updateNodeData(id, { column_name: value });
+
+    },[])
 
     return (
         <CustomNode title="Stats" id={id} input={`IN : ${nodeData?.data?.dataset?.length || 0}`} output={`OP : ${data?.dataset?.length || 0}`} {...props}>
@@ -46,8 +52,8 @@ const StatsNode = ({ id, data, props }: any) => {
                 <div className="">
                     <Label>Column name:</Label>
                     <Select
-                        onValueChange={(e: any) => setInputData({ ...inputData, column_name: e })}
-                        value={inputData.column_name}
+                        onValueChange={handleColumnChange}
+                        value={data?.column_name}
                     >
                         <SelectTrigger className="w-[260px] my-1 border-primary">
                             <SelectValue placeholder="Select" />

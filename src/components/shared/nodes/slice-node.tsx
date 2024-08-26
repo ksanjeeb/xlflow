@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
 import CustomNode from "../custom-node";
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { useHandleConnections, useNodesData, useReactFlow } from "@xyflow/react";
 import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
@@ -10,7 +10,6 @@ const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
 
 function SliceNode({ id, data, ...props }: any) {
-    const [sliceIndex, setSliceIndex] = useState({ from: "", to: "" });
     const { updateNodeData } = useReactFlow();
     const worker = useWorker(createWorker);
 
@@ -22,13 +21,17 @@ function SliceNode({ id, data, ...props }: any) {
 
 
     useEffect(() => {
-        (async ()=>{
-            const data: any = nodeData?.data?.dataset || [];
-            const modifiedData = await worker.handleSlice(data, sliceIndex)
+        (async () => {
+            const _data: any = nodeData?.data?.dataset || [];
+            const modifiedData = await worker.handleSlice(_data, data?.slice_index)
             updateNodeData(id, { dataset: modifiedData });
         })()
 
-    }, [sliceIndex, nodeData]);
+    }, [data?.slice_index, nodeData]);
+
+    const handleChange = useCallback((value: any) => {
+        updateNodeData(id, { slice_index: { ...value } });
+    }, [])
 
 
     return (
@@ -38,8 +41,8 @@ function SliceNode({ id, data, ...props }: any) {
                     <Label>From index:</Label>
                     <Input
                         type='text'
-                        value={sliceIndex.from}
-                        onChange={e => { setSliceIndex({ ...sliceIndex, from: e.target.value }) }}
+                        value={data?.slice_index?.from || ""}
+                        onChange={e => { handleChange({ ...data?.slice_index ,"from": e.target.value }) }}
                         className='my-2 min-w-64 border-2 border-primary'
                     />
                 </div>
@@ -48,8 +51,8 @@ function SliceNode({ id, data, ...props }: any) {
                     <Label>To index:</Label>
                     <Input
                         type='text'
-                        value={sliceIndex.to}
-                        onChange={e => { setSliceIndex({ ...sliceIndex, to: e.target.value }) }}
+                        value={data?.slice_index?.to || ""}
+                        onChange={e => { handleChange({ ...data?.slice_index,"to": e.target.value }) }}
                         className='my-2 min-w-64 border-2 border-primary'
                     />
                 </div>

@@ -121,6 +121,7 @@ export function mergeByColumn(
 
 export const handleSlice = (data: any, sliceIndex: any) => {
   try {
+    if(!sliceIndex) return data;
     const { from, to } = sliceIndex;
     if (from == 0 && to == 0) return data;
     const isValid = from >= 0 && to <= data.length && from < to;

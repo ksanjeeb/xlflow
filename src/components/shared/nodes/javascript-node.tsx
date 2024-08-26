@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import CustomNode from '../custom-node';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs';
@@ -18,11 +18,11 @@ interface JavascriptNodeProps {
 const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
 
-const JavascriptNode = ({ id,data, ...props }: JavascriptNodeProps) => {
+const JavascriptNode = ({ id, data, ...props }: JavascriptNodeProps) => {
   const fixedCodeTop = 'async function(dataset) {\n';
   const fixedCodeBottom = '\n}';
-  const [editableCode, setEditableCode] = useState<string>('  // Your JavaScript code here \nreturn null;');
-  const fullCode = `${fixedCodeTop}${editableCode}${fixedCodeBottom}`;
+  // const [editableCode, setEditableCode] = useState<string>('  // Your JavaScript code here \nreturn null;');
+  const fullCode = `${fixedCodeTop}${data?.code}${fixedCodeBottom}`;
   const worker = useWorker(createWorker);
 
   const { updateNodeData } = useReactFlow();
@@ -35,18 +35,24 @@ const JavascriptNode = ({ id,data, ...props }: JavascriptNodeProps) => {
 
   useEffect(() => {
     if (nodeData?.data?.dataset) {
-      updateNodeData(id, { dataset: nodeData.data.dataset });
+      updateNodeData(id, { dataset: nodeData.data.dataset,  code: data?.code || "// Your JavaScript code here \nreturn null;" });
     }
   }, [nodeData]);
 
 
   const handleRunButton = useCallback(async () => {
-    (async ()=>{
+    (async () => {
       const filteredData = await worker.handleExecute(nodeData?.data?.dataset, fullCode);
       console.log(filteredData)
       updateNodeData(id, { dataset: filteredData });
     })()
-  },[]);
+  }, []);
+
+  const handleCodeChange = useCallback((code: any) => {
+    const editablePart = code.substring(fixedCodeTop.length, code.length - fixedCodeBottom.length);
+    updateNodeData(id, { code: editablePart });
+  }, [])
+
 
   return (
     <CustomNode title="Javascript" id={id} input={`IN : ${nodeData?.data?.dataset?.length || 0}`} output={`OP : ${data?.dataset?.length || 0}`} {...props}>
@@ -54,10 +60,7 @@ const JavascriptNode = ({ id,data, ...props }: JavascriptNodeProps) => {
         <>
           <Editor
             value={fullCode}
-            onValueChange={(code) => {
-              const editablePart = code.substring(fixedCodeTop.length, code.length - fixedCodeBottom.length);
-              setEditableCode(editablePart);
-            }}
+            onValueChange={handleCodeChange}
             highlight={(code) => highlight(code, languages.js, 'javascript')}
             padding={10}
             className="min-w-64 border-transparent"
@@ -67,7 +70,7 @@ const JavascriptNode = ({ id,data, ...props }: JavascriptNodeProps) => {
             }}
           />
           <Button className="w-full h-fit mt-4 px-[5px] py-[4px]" onClick={() => handleRunButton()}>
-             Run
+            Run
           </Button>
         </>
       ) : (

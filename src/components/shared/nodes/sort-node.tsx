@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import CustomNode from '../custom-node';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -10,7 +10,7 @@ const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
 
 function SortNode({ id,data, ...props }: any) {
-    const [sort, setSort] = useState({ column_name: "", order: "" })
+    // const [sort, setSort] = useState({ column_name: "", order: "" })
     const { updateNodeData } = useReactFlow();
     const worker = useWorker(createWorker);
 
@@ -23,11 +23,15 @@ function SortNode({ id,data, ...props }: any) {
 
     useEffect(() => {
         (async ()=>{
-            const data: any = nodeData?.data?.dataset || [];
-            const modifiedData = await worker.handleSort(data, sort);
+            const _data: any = nodeData?.data?.dataset || [];
+            const modifiedData = await worker.handleSort(_data, data?.sort);
             updateNodeData(id, { dataset: modifiedData });
         })()
-    }, [sort, nodeData]);
+    }, [data?.sort, nodeData]);
+
+    const handleSortChange=useCallback((value:any)=>{
+        updateNodeData(id, { sort: value });
+    },[])
 
 
     return (
@@ -35,7 +39,7 @@ function SortNode({ id,data, ...props }: any) {
             {nodeData?.data?.dataset?.length > 0 ? <>
                 <div className='mt-2'>
                     <Label>Column name:</Label>
-                    <Select onValueChange={(e) => setSort({ ...sort, column_name: e })} value={sort.column_name}>
+                    <Select onValueChange={(e) => handleSortChange({ ...data?.sort, column_name: e })} value={data?.sort?.column_name}>
                         <SelectTrigger className="w-[260px] my-1 border-primary">
                             <SelectValue placeholder="Please select column" />
                         </SelectTrigger>
@@ -48,7 +52,7 @@ function SortNode({ id,data, ...props }: any) {
                 </div>
                 <div className='mt-2'>
                     <Label>Order:</Label>
-                    <Select onValueChange={(e) => setSort({ ...sort, order: e })} value={sort.order}>
+                    <Select onValueChange={(e) => handleSortChange({ ...data?.sort, order: e })} value={data?.sort?.order}>
                         <SelectTrigger className="w-[260px] my-1 border-primary">
                             <SelectValue placeholder="Select order" />
                         </SelectTrigger>

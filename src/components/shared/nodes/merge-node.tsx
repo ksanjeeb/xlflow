@@ -1,6 +1,6 @@
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect } from "react";
 import CustomNode from "../custom-node";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -13,7 +13,6 @@ const createWorker = createWorkerFactory(() => import('../../../lib/worker'));
 
 
 const MergeByColumnKey = ({ id, data, ...props }: any) => {
-    const [mergeColumn, setMergeColumn] = useState<{ list: string[], column_key: string }>({ list: [], column_key: "" });
     const { updateNodeData } = useReactFlow();
     const worker = useWorker(createWorker);
 
@@ -40,8 +39,8 @@ const MergeByColumnKey = ({ id, data, ...props }: any) => {
             const commonKeys = Array.from(types1.keys()).filter(key =>
                 types2.has(key) && types1.get(key) === types2.get(key)
             );
-            if (commonKeys.length !== mergeColumn.list.length || !commonKeys.every((key, i) => key === mergeColumn.list[i])) {
-                setMergeColumn((prev: any) => ({ ...prev, list: commonKeys }));
+            if (commonKeys.length !== data?.merge_column?.list?.length || !commonKeys.every((key, i) => key === data?.merge_column?.list[i])) {
+                updateNodeData(id, { merge_column: {...data?.merge_column ,  list: commonKeys } });
             }
         }
     }, [nodeData1, nodeData2]);
@@ -50,24 +49,28 @@ const MergeByColumnKey = ({ id, data, ...props }: any) => {
     useEffect(() => {
         const dataset1: any = nodeData1?.data?.dataset || [];
         const dataset2: any = nodeData2?.data?.dataset || [];
-        if (mergeColumn?.column_key && dataset1 && dataset2) {
+        if (data?.merge_column?.column_key && dataset1 && dataset2) {
             (async ()=>{
-                const modifiedData = await worker.mergeByColumn(dataset1, dataset2, mergeColumn?.column_key);
+                const modifiedData = await worker.mergeByColumn(dataset1, dataset2, data?.merge_column?.column_key);
                 updateNodeData(id, { dataset: modifiedData });
             })()
         }
-    }, [mergeColumn]);
+    }, [data?.merge_column]);
+
+    const handleColumnChange=useCallback((merged:any)=>{
+        updateNodeData(id, { merge_column: merged });
+    },[])
 
     return (
         <CustomNode title="Merge by column" enableSecondTarget={true} id={id} input={`IN1 : ${nodeData1?.data?.dataset?.length || 0} & IN2 : ${nodeData2?.data?.dataset?.length || 0}`} output={`OP : ${data?.dataset?.length || 0}`} {...props}>
             {nodeData1?.data?.dataset?.length > 0 && nodeData2?.data?.dataset?.length > 0 ? <>
                 <Label>Similar Column name:</Label>
-                <Select onValueChange={(e: any) => setMergeColumn((prev: any) => ({ ...prev, column_key: e }))} value={mergeColumn.column_key}>
+                <Select onValueChange={(e)=>handleColumnChange({...data?.merge_column ,  column_key: e })} value={data?.merge_column?.column_key}>
                     <SelectTrigger className="w-[260px] my-1 border-primary">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
-                        {mergeColumn?.list?.map((el: string, i: number) => (
+                        {data?.merge_column?.list?.map((el: string, i: number) => (
                             <SelectItem key={i} value={el}>{el}</SelectItem>
                         ))}
                     </SelectContent>

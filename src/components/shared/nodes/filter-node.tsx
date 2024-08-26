@@ -53,7 +53,7 @@ const FilterNode = ({ id, data, ...props }: { id: string; [key: string]: any }) 
 
     useEffect(() => {
         const dataset: any = nodeData?.data?.dataset || [];
-        updateNodeData(id, { dataset: dataset, filter: initialFilter });
+        updateNodeData(id, { dataset: dataset, filter:data?.filter || initialFilter });
     }, [nodeData?.data?.dataset]);
 
     useEffect(() => {

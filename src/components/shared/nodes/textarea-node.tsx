@@ -1,27 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Textarea } from "@/components/ui/textarea";
-import { memo, useState, useRef, useEffect } from "react";
+import { useReactFlow } from "@xyflow/react";
+import { memo,  useRef, useEffect, useCallback } from "react";
 
-function TextAreaNode() {
-  const [inputData, setInputData] = useState("");
+function TextAreaNode({id,data,...props}:any) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const { updateNodeData } = useReactFlow();
+
+  const handleChange=useCallback((value:string)=>{
+    updateNodeData(id, { text: value });
+  },[])
 
   useEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = "auto";
       textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
     }
-  }, [inputData]);
+  }, [data?.text]);
 
 
 
   return (
-    <div>
+    <div {...props}>
       <Textarea
-        value={inputData}
+        value={data?.text}
         rows={1}
         ref={textAreaRef}
-        onChange={(e: any) => setInputData(e.target.value)}
+        onChange={(e: any) => handleChange(e.target.value)}
         placeholder="Type your content here."
         className="border-transparent min-w-64 resize-none overflow-hidden"
       />

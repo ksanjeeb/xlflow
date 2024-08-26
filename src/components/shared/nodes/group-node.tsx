@@ -37,7 +37,7 @@ const GroupNode = ({ id, data, ...props }: GroupNodeProps) => {
 
   useEffect(() => {
     if (nodeData?.data?.dataset) {
-      updateNodeData(id, { dataset: nodeData.data.dataset, group_by_filter: "" });
+      updateNodeData(id, { dataset: nodeData.data.dataset });
     }
   }, [nodeData?.data]);
 
