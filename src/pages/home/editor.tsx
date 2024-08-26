@@ -64,7 +64,7 @@ function Editor() {
     const showBack = searchParams.get('back');
 
     const [tableData, setTableData] = useState([]);
-    const [openDialog, setOpenDialog] = useState({type:"save", value:false})
+    const [openDialog, setOpenDialog] = useState({ type: "save", value: false })
 
     const availableNodes = [
         {
@@ -257,7 +257,7 @@ function Editor() {
                     error: (err) => `This just happened: ${err.toString()}`,
                 },
             )
-            setOpenDialog({...openDialog, value:false})
+            setOpenDialog({ ...openDialog, value: false })
         } catch (err) {
             console.error(err);
         } finally {
@@ -277,7 +277,7 @@ function Editor() {
                     error: (err) => `This just happened: ${err.toString()}`,
                 },
             )
-            setOpenDialog({...openDialog, value:false})
+            setOpenDialog({ ...openDialog, value: false })
         } catch (err) {
             console.error(err);
         } finally {
@@ -299,10 +299,10 @@ function Editor() {
                             <BlocksList onAction={handleCardClick} />
                         </div>
                         <div className="flex flex-col md:flex-row gap-2">
-                            {workflowID === "new" && <Button variant={"secondary"} onClick={()=>setOpenDialog({type:"save", value:true})} disabled={saving}>
+                            {workflowID === "new" && <Button variant={"secondary"} onClick={() => setOpenDialog({ type: "save", value: true })} disabled={saving}>
                                 {saving ? "Saving..." : "Save"}{saving && <Loader2 className="animate-spin ml-2" size={16} />}
                             </Button>}
-                            {workflowID !== "new" && workflowID !== "demo" && nodes?.length > 0 && edges.length > 0 && <Button variant={"outline"} onClick={()=>setOpenDialog({type:"update", value:true})} disabled={saving}>
+                            {workflowID !== "new" && workflowID !== "demo" && nodes?.length > 0 && edges.length > 0 && <Button variant={"outline"} onClick={() => setOpenDialog({ type: "update", value: true })} disabled={saving}>
                                 {saving ? "Updating..." : "Update"} {saving && <Loader2 className="animate-spin ml-2" size={16} />}
                             </Button>}
                         </div>
@@ -352,10 +352,10 @@ function Editor() {
                 </ResizablePanelGroup>
             </div>
 
-            <Dialog onOpenChange={(e)=> setOpenDialog({...openDialog, value:e})} open={openDialog.value}>
+            <Dialog onOpenChange={(e) => setOpenDialog({ ...openDialog, value: e })} open={openDialog.value}>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>{openDialog?.type === "save"? "Save ":"Update "}Workflow</DialogTitle>
+                        <DialogTitle>{openDialog?.type === "save" ? "Save " : "Update "}Workflow</DialogTitle>
                         <DialogDescription>
                             Make changes to your workflow details here. Click save when you're done.
                         </DialogDescription>
@@ -365,17 +365,17 @@ function Editor() {
                             <Label htmlFor="name" className="text-right">
                                 Name
                             </Label>
-                            <Input id="name" value={meta?.name} className="col-span-3" onChange={(e:any)=> setMeta({...meta, name:e.target.value})}/>
+                            <Input id="name" value={meta?.name} className="col-span-3" onChange={(e: any) => setMeta({ ...meta, name: e.target.value })} />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
                                 Description
                             </Label>
-                            <Textarea id="description" value={meta?.description} className="col-span-3" onChange={(e:any)=> setMeta({...meta, description:e.target.value})}/>
+                            <Textarea id="description" value={meta?.description} className="col-span-3" onChange={(e: any) => setMeta({ ...meta, description: e.target.value })} />
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button type="submit" onClick={()=> openDialog?.type === "save"? handleSaveWorkflow():handleUpdateWorkflow()}>{saving ? "Saving..." : "Save changes"} {saving && <Loader2 className="animate-spin ml-2" size={16} />}</Button>
+                        <Button type="submit" onClick={() => openDialog?.type === "save" ? handleSaveWorkflow() : handleUpdateWorkflow()}>{saving ? "Saving..." : "Save changes"} {saving && <Loader2 className="animate-spin ml-2" size={16} />}</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
