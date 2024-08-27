@@ -299,10 +299,10 @@ function Editor() {
                             <BlocksList onAction={handleCardClick} />
                         </div>
                         <div className="flex flex-col md:flex-row gap-2">
-                            {workflowID === "new" && <Button variant={"secondary"} onClick={() => setOpenDialog({ type: "save", value: true })} disabled={saving}>
+                            {workflowID === "new" && nodes?.length > 0 && <Button variant={"secondary"} onClick={() => setOpenDialog({ type: "save", value: true })} disabled={saving}>
                                 {saving ? "Saving..." : "Save"}{saving && <Loader2 className="animate-spin ml-2" size={16} />}
                             </Button>}
-                            {workflowID !== "new" && workflowID !== "demo" && nodes?.length > 0 && edges.length > 0 && <Button variant={"outline"} onClick={() => setOpenDialog({ type: "update", value: true })} disabled={saving}>
+                            {workflowID !== "new" && workflowID !== "demo" && nodes?.length > 0 &&  <Button variant={"outline"} onClick={() => setOpenDialog({ type: "update", value: true })} disabled={saving}>
                                 {saving ? "Updating..." : "Update"} {saving && <Loader2 className="animate-spin ml-2" size={16} />}
                             </Button>}
                         </div>

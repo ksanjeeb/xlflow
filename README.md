@@ -4,6 +4,8 @@
 
 XlFlow is a node-based editor designed for exploring, analyzing, and transforming data without the need to write code. It offers built-in transformation blocks for tasks like filtering, grouping, merging, and sorting data. Additionally, it features custom code blocks, allowing for advanced data manipulation. The platform provides quick data insights by automatically selecting the appropriate output view for your dataset. Built on the open-source library React Flow, XlFlow simplifies data-wrangling tasks for users.
 
+![Example Image](image-1.png)
+
 ## Tech Stack
 
 - **Frontend:** React (Vite), Shadcn UI
