@@ -6,27 +6,24 @@ import Settings from './pages/home/settings';
 import Layout from './pages/home/layout';
 import Editor from './pages/home/editor';
 import LoginOTP from './pages/auth/login-otp';
+import Landing from './pages/home/landing';
 
 
 function AppRoutes() {
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/dashboard",
       element: <ProtectedRoute element={<Layout />} />,
       children: [
         {
           index: true,
-          element: <Navigate to="/dashboard" />,
-        },
-        {
-          path: "dashboard",
           element: <Dashboard />,
         },
-        {
-          path: "settings",
-          element: <Settings />,
-        }
+        // {
+        //   path: "dashboard",
+        //   element: <Dashboard />,
+        // }
       ],
     },
     {
@@ -37,7 +34,10 @@ function AppRoutes() {
       path: "/login",
       element: <LoginOTP />,
     },
-
+    {
+      path: "/",
+      element: <Landing />,
+    },
   ]);
 
   return (
