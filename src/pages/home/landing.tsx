@@ -34,7 +34,7 @@ export default function Landing() {
                 </Link>
                 <nav className="ml-auto  flex justify-between ">
                     <Button variant={"outline"} onClick={() => navigation("/dashboard")}>
-                        Go to console
+                        Go to dashboard 
                     </Button>
                     <Link className="text-sm font-medium hover:underline underline-offset-4" to="/dashboard" onClick={() => setCurrentPage('features')}>
                     </Link>
@@ -124,7 +124,7 @@ function HomePage() {
                                 Ready to Transform Your Data Workflow for free? Yes it's open source.
                             </h2>
                             <p className="max-w-[900px] text-muted-foreground md:text-xl">
-                                <strong>xlFlow</strong> is based on our open source library <span className='text-red-500'>react-flow</span>
+                                <strong>xlFlow</strong> is based on open source library <span className='text-red-500'>react-flow</span>
                             </p>
 
                         </div>
