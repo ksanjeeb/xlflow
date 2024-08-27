@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback } from "react";
 import CustomNode from "../custom-node";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useReactFlow } from "@xyflow/react";
@@ -7,7 +7,6 @@ import UFOSighting from "../../../json/ufo_sighting.json";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const ExampleData = ({ id, data, ...props }: any) => {
-    const [example, setExample] = useState("");
     const { updateNodeData } = useReactFlow();
 
     const onChange = useCallback((evt: string) => {
@@ -19,15 +18,14 @@ const ExampleData = ({ id, data, ...props }: any) => {
         } else {
             return;
         }
-        setExample(evt);
         if (temp) {
-            updateNodeData(id, { dataset: temp });
+            updateNodeData(id, { dataset: temp , filter_value:evt });
         }
     }, []);
 
     return (
-        <CustomNode title="Example Data" enableTarget={false} id={id} input={"Dataset : " +data?.dataset.length || 0} {...props}>
-            <Select onValueChange={(e) => onChange(e)} value={example}>
+        <CustomNode title="Example Data" enableTarget={false} id={id} input={"Dataset : " +data?.dataset?.length || 0} {...props}>
+            <Select onValueChange={(e) => onChange(e)} value={data?.filter_value || ""}>
                 <SelectTrigger className="w-[260px] my-1 border-primary">
                     <SelectValue placeholder="Select dataset" />
                 </SelectTrigger>

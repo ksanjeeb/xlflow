@@ -1,1 +1,1 @@
-# xlflow
+# xlFlow - a node-based editor for exploring, analyzing and transforming data without code
