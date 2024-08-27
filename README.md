@@ -2,7 +2,7 @@
 
 ## Overview
 
-xlFlow is a node-based editor designed for exploring, analyzing, and transforming data without the need to write code. It offers built-in transformation blocks for tasks like filtering, grouping, merging, and sorting data. Additionally, it features custom code blocks, allowing for advanced data manipulation. The platform provides quick data insights by automatically selecting the appropriate output view for your dataset. Built on the open-source library React Flow, xlFlow simplifies data-wrangling tasks for users.
+XlFlow is a node-based editor designed for exploring, analyzing, and transforming data without the need to write code. It offers built-in transformation blocks for tasks like filtering, grouping, merging, and sorting data. Additionally, it features custom code blocks, allowing for advanced data manipulation. The platform provides quick data insights by automatically selecting the appropriate output view for your dataset. Built on the open-source library React Flow, XlFlow simplifies data-wrangling tasks for users.
 
 ## Tech Stack
 
@@ -39,7 +39,9 @@ xlFlow is a node-based editor designed for exploring, analyzing, and transformin
 
 5. Hooray!! Access the UI at http://localhost:5173.
 
-## This project is open source and welcomes contributions! If you're interested in adding new blocks or enhancing existing ones, we encourage you to contribute. Whether it's improving functionality, fixing bugs, or introducing new features, your contributions are highly valued. Reach me at code.sanjeeb@gmail.com
+Checkout our deployed version : https://xlflow.vercel.app
+
+### This project is open source and welcomes contributions! If you're interested in adding new blocks or enhancing existing ones, we encourage you to contribute. Whether it's improving functionality, fixing bugs, or introducing new features, your contributions are highly valued. Reach me at code.sanjeeb@gmail.com
 
 
 
