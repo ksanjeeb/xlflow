@@ -83,7 +83,7 @@ function HomePage() {
                             </div>
                         </div>
                         <div className="flex items-center justify-center">
-                            <img src={"image-1.png"} className='h-72 my-14 w-full rounded-lg overflow-hidden' />
+                            <img src={"/image-1.png"} className='h-72 my-14 w-full rounded-lg overflow-hidden' />
                         </div>
                     </div>
                 </div>
