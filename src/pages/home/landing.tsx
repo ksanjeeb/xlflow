@@ -39,7 +39,7 @@ export default function Landing() {
                     <Link className="text-sm font-medium hover:underline underline-offset-4" to="/dashboard" onClick={() => setCurrentPage('features')}>
                     </Link>
                 </nav>
-            
+
             </header>
             <main className="flex-1">
                 {renderPage()}
@@ -137,11 +137,14 @@ function HomePage() {
                                 Start your free trial. No credit card required.
                             </p> */}
 
-                            <div className='flex flex-row gap-2 justify-center text-xl font-bold hover:text-sky-600 p-4 text-center border-[2px] hover:bg-muted rounded-lg outline-neutral-500	 outline outline-2 outline-offset-4'>
+                            <div
+                                className='flex flex-row gap-2 justify-center text-xl font-bold hover:text-sky-600 p-4 text-center border-[2px] hover:bg-muted rounded-lg outline-neutral-500 outline outline-2 outline-offset-4 cursor-pointer'
+                                onClick={() => window.open('https://github.com/ksanjeeb/xlflow', '_blank', 'noopener,noreferrer')}
+                            >
                                 <GithubIcon className='self-center w-8 h-8' />
-                                <a href="https://github.com/ksanjeeb/xlflow" target="_blank" rel="noopener noreferrer">
+                                <p className='self-center'>
                                     github.com/ksanjeeb/xlflow
-                                </a>
+                                </p>
                             </div>
                         </div>
                     </div>
