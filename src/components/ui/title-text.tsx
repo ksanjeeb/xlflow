@@ -49,6 +49,15 @@ const TitleText: React.FC<TitleTextProps> = ({ text }) => {
     }
 
 
+    const redirectToFeedback=()=>{
+        try{
+            window.open( import.meta.env.VITE_TALLY_FORM_ID,"_blank") //Paste your form here
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+
     return (
         <div
             className="text-2xl z-20 font-semibold top-10 mb-16 sticky "
@@ -77,7 +86,7 @@ const TitleText: React.FC<TitleTextProps> = ({ text }) => {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuItem>Feedback</DropdownMenuItem>
+                        <DropdownMenuItem onClick={redirectToFeedback}>Feedback</DropdownMenuItem>
                         <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

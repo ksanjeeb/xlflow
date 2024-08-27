@@ -45,7 +45,9 @@ export default function Landing() {
                 {renderPage()}
             </main>
             <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-                <p className="text-xs text-muted-foreground">© 2024 HelloGiraffeLab</p>
+                <p className="text-xs text-muted-foreground">©2024 Developed by {" "}
+                <a href="https://github.com/ksanjeeb" target="_blank" className='underline font-bold text-blue-500'>©ksanjeeb</a>
+                </p>
                 <nav className="sm:ml-auto flex gap-4 sm:gap-6">
                     <Link className="text-xs hover:underline underline-offset-4" to="/">
                         Terms of Service
@@ -133,9 +135,6 @@ function HomePage() {
                                 <Input className="max-w-lg flex-1" placeholder="Enter your email" type="email" />
                                 <Button type="submit" onClick={() => navigation("/dashboard")}>Get Started</Button>
                             </form>
-                            {/* <p className="text-xs text-muted-foreground">
-                                Start your free trial. No credit card required.
-                            </p> */}
 
                             <div
                                 className='flex flex-row gap-2 justify-center text-xl font-bold hover:text-sky-600 p-4 text-center border-[2px] hover:bg-muted rounded-lg outline-neutral-500 outline outline-2 outline-offset-4 cursor-pointer'
