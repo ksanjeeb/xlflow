@@ -1,8 +1,7 @@
 
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter,  RouterProvider } from 'react-router-dom';
 import Dashboard from './pages/home/dashboard';
 import ProtectedRoute from './protected';
-import Settings from './pages/home/settings';
 import Layout from './pages/home/layout';
 import Editor from './pages/home/editor';
 import LoginOTP from './pages/auth/login-otp';
@@ -19,11 +18,7 @@ function AppRoutes() {
         {
           index: true,
           element: <Dashboard />,
-        },
-        // {
-        //   path: "dashboard",
-        //   element: <Dashboard />,
-        // }
+        }
       ],
     },
     {

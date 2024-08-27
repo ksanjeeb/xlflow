@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { CircleIcon, CodeIcon, DatabaseIcon, GitBranchIcon, LineChartIcon, NetworkIcon, CheckIcon, MenuIcon, XIcon, Workflow, GithubIcon } from "lucide-react"
+import { CircleIcon, CodeIcon, DatabaseIcon, GitBranchIcon, LineChartIcon, NetworkIcon, CheckIcon, Workflow, GithubIcon } from "lucide-react"
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function Landing() {
     const [currentPage, setCurrentPage] = useState('home')
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const navigation = useNavigate();
 
     const renderPage = () => {
