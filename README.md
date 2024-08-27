@@ -1,4 +1,4 @@
-# xlFlow - A Node-Based Editor
+# XlFlow - A Node-Based Editor
 
 ## Overview
 
@@ -28,7 +28,7 @@ xlFlow is a node-based editor designed for exploring, analyzing, and transformin
     ```
 3. Set up Appwrite collection attributes as shown in the image:
 
-    ![Collection attributes](image.png)
+   ![Collection attributes](image.png)
 
 
 4. Start the development server:
