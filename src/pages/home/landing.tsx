@@ -137,7 +137,7 @@ function HomePage() {
                                 Start your free trial. No credit card required.
                             </p> */}
 
-                            <div className='flex flex-row gap-2 justify-center text-xl font-bold hover:text-sky-600 p-4 text-center border-[2px] hover:bg-muted rounded-lg'>
+                            <div className='flex flex-row gap-2 justify-center text-xl font-bold hover:text-sky-600 p-4 text-center border-[2px] hover:bg-muted rounded-lg outline-neutral-500	 outline outline-2 outline-offset-4'>
                                 <GithubIcon className='self-center w-8 h-8' />
                                 <a href="https://github.com/ksanjeeb/xlflow" target="_blank" rel="noopener noreferrer">
                                     github.com/ksanjeeb/xlflow
