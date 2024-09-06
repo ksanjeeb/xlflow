@@ -71,9 +71,9 @@ export const groupByKey = (data: any, key: string) => {
   }
 };
 
-export const handleExecute = async (dataset: any, fullCode: any) => {
+export const handleExecute = async (dataset: any, fullCode: string) => {
   try {
-    const dynamicFunction = new Function("return " + fullCode)();
+    const dynamicFunction = new Function('dataset', `return ${fullCode}`);
     return await dynamicFunction(dataset);
   } catch (error) {
     toast.error("Function execution error:" + error);
